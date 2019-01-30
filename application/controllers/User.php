@@ -170,7 +170,7 @@ class User extends BaseController
             $data['roles'] = $this->user_model->getUserRoles();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
-            $this->global['pageTitle'] = 'Leduc Food Bank : Edit User';
+            $this->global['pageTitle'] = 'Leduc Food Bank | Edit User';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -269,7 +269,7 @@ class User extends BaseController
      */
     function pageNotFound()
     {
-        $this->global['pageTitle'] = 'Leduc Food Bank : 404 - Page Not Found';
+        $this->global['pageTitle'] = 'Leduc Food Bank | 404 - Page Not Found';
         
         $this->loadViews("404", $this->global, NULL, NULL);
     }
@@ -306,7 +306,7 @@ class User extends BaseController
 
             $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'Leduc Food Bank : User Login History';
+            $this->global['pageTitle'] = 'Leduc Food Bank | User Login History';
             
             $this->loadViews("loginHistory", $this->global, $data, NULL);
         }        
@@ -320,7 +320,7 @@ class User extends BaseController
         $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
         $data["active"] = $active;
         
-        $this->global['pageTitle'] = $active == "details" ? 'Leduc Food Bank : My Profile' : 'Leduc Food Bank : Change Password';
+        $this->global['pageTitle'] = $active == "details" ? 'Leduc Food Bank | My Profile' : 'Leduc Food Bank | Change Password';
         $this->loadViews("profile", $this->global, $data, NULL);
     }
 
