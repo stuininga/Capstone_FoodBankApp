@@ -1,0 +1,18 @@
+.main-header .logo .logo-lg {
+    display: flex;
+    justify-content: space-around;
+    font-size: 17px;
+}
+.logo-mini .image-container {
+    width: 50%;
+    margin: 0 auto;
+}
+.logo-lg .image-container {
+    width: 18%;
+}
+.logo-lg img, .logo-mini img {
+    width: 100%;
+}
+.logo-lg b {
+    width: 82%;
+}
