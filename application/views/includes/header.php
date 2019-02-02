@@ -16,6 +16,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <!-- Custom CSS File-->
+    <link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
     <style>
     	.error{
     		color:red;
@@ -42,9 +44,18 @@
         <!-- Logo -->
         <a href="<?php echo base_url(); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>LFB</b></span>
+          <span class="logo-mini">
+            <div class="image-container">
+              <img src="./assets/images/logo.png" alt="Leduc Food Bank Logo"/>
+            </div>
+          </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Leduc Food Bank</b></span>
+          <span class="logo-lg">
+            <div class="image-container">
+              <img src="./assets/images/logo.png" alt="Leduc Food Bank Logo"/>
+            </div>
+            <b>Leduc Food Bank</b>
+          </span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
