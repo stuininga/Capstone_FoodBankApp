@@ -1,3 +1,4 @@
+/*** Add Logo to site branding ***/
 .main-header .logo .logo-lg {
     display: flex;
     justify-content: space-around;
@@ -15,4 +16,28 @@
 }
 .logo-lg b {
     width: 82%;
+}
+
+/*** Fix main navigation colours***/
+.skin-blue .main-header .navbar, .skin-blue .main-header li.user-header, .skin-blue .main-header .logo {
+    background-color: #666666;
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover, .skin-blue .main-header .logo:hover, .skin-blue .main-header .navbar .nav>li>a:hover {
+    background-color: #595959;
+}
+
+/*** Fix User Dropdown ***/
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    padding: 10px;
+    text-align: center;
+    height: auto;
+    padding: 5px 41px;
+}
+.navbar-nav>.user-menu>.dropdown-menu {
+    width: auto;
+    min-width: 280px;
+}
+
+.navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+    border: none;
 }
