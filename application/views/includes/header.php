@@ -84,7 +84,7 @@
                 <!-- Account dropdown -->
                 <ul class="user-dropdown-menu closed" id="dropdown-menu">
                   <li>       
-                    <a href="<?php echo base_url() . 'admin/profile.php'?>">Edit Profile</a> 
+                    <a href="<?php echo base_url()?>profile">Edit Profile</a> 
                   </li>
                   <li>
                       <a href="<?php echo base_url(); ?>logout" class="button"><i class="fas fa-sign-out-alt"></i> Log out</a>
@@ -110,13 +110,13 @@
               </a>
             </li>
             <li class="treeview">
-              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url(); ?>">
+              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url(); ?>addNewClient">
                 <i class="fas fa-user-plus"></i> 
                 <span>Add Client</span></i>
               </a>
             </li>
             <li class="treeview">
-              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url(); ?>">
+              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url()?>allClients">
                 <i class="fas fa-search"></i> 
                 <span>Search Clients</span></i>
               </a>

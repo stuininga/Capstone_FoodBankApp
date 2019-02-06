@@ -35,9 +35,6 @@ $role = $userInfo->role;
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right"><?= $email ?></a>
                             </li>
-                            <li class="list-group-item">
-                                <b>Mobile</b> <a class="pull-right"><?= $mobile ?></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -61,14 +58,6 @@ $role = $userInfo->role;
                                                 <label for="fname">Full Name</label>
                                                 <input type="text" class="form-control" id="fname" name="fname" placeholder="<?php echo $name; ?>" value="<?php echo set_value('fname', $name); ?>" maxlength="128" />
                                                 <input type="hidden" value="<?php echo $userId; ?>" name="userId" id="userId" />    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="mobile">Mobile Number</label>
-                                                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="<?php echo $mobile; ?>" value="<?php echo set_value('mobile', $mobile); ?>" maxlength="10">
                                             </div>
                                         </div>
                                     </div>
