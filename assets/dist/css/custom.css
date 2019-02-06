@@ -101,6 +101,9 @@ header .navbar {
 .user-dropdown-menu li a:visited {
     color: #31353d;
 }
+.dropdown.user.user-menu a.dropdown-toggle:visited {
+    color: #ffffff;
+}
 .user-dropdown-menu li a:hover {
     background-color: rgba(90, 97, 103, 0.4);
     color: #31353d;
