@@ -2,7 +2,6 @@
 $userId = $userInfo->userId;
 $name = $userInfo->name;
 $email = $userInfo->email;
-$mobile = $userInfo->mobile;
 $roleId = $userInfo->roleId;
 $role = $userInfo->role;
 ?>
