@@ -11,7 +11,7 @@ $roleId = $userInfo->roleId;
     <section class="content-header">
       <h1>
         <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
+        <small>Edit Current User</small>
       </h1>
     </section>
     
@@ -22,11 +22,9 @@ $roleId = $userInfo->roleId;
             <div class="col-md-8">
               <!-- general form elements -->
                 
-                
-                
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter User Details</h3>
+                        <h3 class="box-title">Edit User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
@@ -63,12 +61,12 @@ $roleId = $userInfo->roleId;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php //echo $mobile; ?>" maxlength="10">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="role">Role</label>

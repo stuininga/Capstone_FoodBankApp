@@ -3,7 +3,7 @@
     <section class="content-header">
       <h1>
         <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
+        <small>Add New User</small>
       </h1>
     </section>
     
@@ -54,12 +54,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control required digits" id="mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" maxlength="10">
+                                        <input type="text" class="form-control required digits" id="mobile" value="<?php //echo set_value('mobile'); ?>" name="mobile" maxlength="10">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="role">Role</label>
