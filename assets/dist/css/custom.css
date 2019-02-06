@@ -27,6 +27,9 @@
 .main-header .sidebar-toggle, .dropdown.user.user-menu a {
     color: #ffffff;
 }  
+.dropdown.user.user-menu a:visited {
+    color: #31353d;
+} 
 .main-header .sidebar-toggle {
     font-size: 24px;
 }

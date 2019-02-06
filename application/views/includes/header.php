@@ -149,6 +149,7 @@
                 <a class="<?php echo $databaseColor; ?>" href="<?php //echo base_url(); ?>profile">
                   <i class="fas fa-user-circle"></i>
                   <span>My Profile</span>
+                </a>
               </li>
             <?php } ?>
           </ul>
