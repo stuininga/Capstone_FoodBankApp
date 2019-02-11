@@ -57,6 +57,9 @@
 .sidebar-menu li a.green:hover i {
     color: #a1b545;
 }
+.green {
+    color: #a1b545;
+}
 
 /*** Fix main navigation colours***/
 .main-header .navbar, .main-header li.user-header, .main-header .logo {

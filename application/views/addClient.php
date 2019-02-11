@@ -38,6 +38,24 @@
                                         <input type="text" class="form-control required" value="<?php echo set_value('lname'); ?>" id="lname" name="lname" maxlength="70">
                                     </div>
                                 </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="location">Location</label>
+                                        <select name="location">
+                                            <option value="">Select Region</option>
+                                            <!-- Displaying fetched regions in options using foreach loop -->
+                                            <?php foreach($locationsRecord as $region):?>
+                                                <?php ($region->location_id == $locationID) ? $selected = TRUE:$selected = FALSE; ?>
+                                                <option value="<?php echo $region->location_id; ?>" <?php echo set_select('location', '<?php echo $region->location_id; ?>', $selected); ?> ><?php echo $region->location_name; ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
     

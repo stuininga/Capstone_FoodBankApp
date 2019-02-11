@@ -56,8 +56,9 @@ $route['404_override'] = 'error_404';
 
 /*********** USER DEFINED ROUTES *******************/
 
+/* User Routes */
 $route['loginMe'] = 'login/loginMe';
-$route['dashboard'] = 'user';
+$route['dashboard'] = 'client';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
@@ -88,6 +89,7 @@ $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
 
+/* Client Routes */
 $route['allClients'] = 'client/viewClients';
 $route['addNewClient'] = 'client/addNewClient';
 $route['addNewClientForm'] = 'client/addNewClientForm';

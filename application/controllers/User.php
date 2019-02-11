@@ -26,9 +26,9 @@ class User extends BaseController
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Leduc Food Bank | Dashboard';
+        $this->global['pageTitle'] = 'Leduc Food Bank | Users';
         
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
+        // $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
     
     /**

@@ -18,7 +18,6 @@ class Client_model extends CI_Model
     {
         $this->db->select('first_name, last_name, client_code');
         $this->db->from('lfb_clients');
-        $this->db->where('client_code !=', 1);
         $query = $this->db->get();
         
         return $query->result();
@@ -26,6 +25,7 @@ class Client_model extends CI_Model
 
     /**
      * This function is used to add a new client to system
+     * @param array $clientInfo : This is the information from the user
      * @return number $insert_id : This is last inserted id
      */
     function addNewClient($clientInfo)
@@ -40,6 +40,18 @@ class Client_model extends CI_Model
         return $insert_id;
     }
 
+    /**
+     * This function is used to get the locations from lfb_clients_locations
+     * @return array $result : This is result of the query
+     */
+    function getLocations()
+    {
+        $this->db->select('location_id, location_name');
+        $this->db->from('lfb_clients_location');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
 
 
 
