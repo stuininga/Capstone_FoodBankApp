@@ -16,7 +16,7 @@ class Client_model extends CI_Model
      */
     function getClientInfo()
     {
-        $this->db->select('first_name, last_name, client_code');
+        $this->db->select('first_name, last_name, client_code, location_id, client_birthdate, home_phone, cell_phone');
         $this->db->from('lfb_clients');
         $query = $this->db->get();
         
@@ -48,6 +48,20 @@ class Client_model extends CI_Model
     {
         $this->db->select('location_id, location_name');
         $this->db->from('lfb_clients_location');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
+     * This function is used to get the location names with all the client info from lfb_clients_locations joined to lfb_clients
+     * @return array $result : This is result of the query
+     */
+    function getClientInfoAndLocations()
+    {
+        $this->db->select('Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.cell_phone, Location.location_name');
+        $this->db->from('lfb_clients as Client');
+        $this->db->join('lfb_clients_location as Location','Client.location_id = Location.location_id');
         $query = $this->db->get();
         
         return $query->result();

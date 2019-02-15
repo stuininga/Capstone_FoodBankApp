@@ -27,14 +27,14 @@
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="fname">First Name</label>
+                                        <label for="fname"><span class="need">*</span> First Name</label>
                                         <input type="text" class="form-control required" value="<?php echo set_value('fname'); ?>" id="fname" name="fname" maxlength="70">
                                     </div>
                                     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="fname">Last Name</label>
+                                        <label for="fname"><span class="need">*</span> Last Name</label>
                                         <input type="text" class="form-control required" value="<?php echo set_value('lname'); ?>" id="lname" name="lname" maxlength="70">
                                     </div>
                                 </div>
@@ -42,21 +42,57 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="location">Location</label>
-                                        <select name="location">
+                                        <label for="location"><span class="need">*</span> Location</label>
+                                        <select class="form-control required" id="location" name="location">
                                             <option value="">Select Region</option>
-                                            <!-- Displaying fetched regions in options using foreach loop -->
-                                            <?php foreach($locationsRecord as $region):?>
-                                                <?php ($region->location_id == $locationID) ? $selected = TRUE:$selected = FALSE; ?>
-                                                <option value="<?php echo $region->location_id; ?>" <?php echo set_select('location', '<?php echo $region->location_id; ?>', $selected); ?> ><?php echo $region->location_name; ?></option>
-                                            <?php endforeach;?>
+                                            <?php foreach ($locationsRecord as $location): ?>
+                                                    <option value="<?php echo $location->location_id ?>" <?php if($location->location_id == set_value('location')) {echo "selected=selected";} ?>><?php echo $location->location_name ?></option>
+                                            <?php endforeach; ?>
                                         </select>
-
-
-
                                     </div>
                                 </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="home-phone"><span class="need">*</span> Main Phone</label>
+                                    <input type="text" class="form-control required" value="<?php echo set_value('home-phone'); ?>" id="home-phone" name="home-phone">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cell-phone">Cell Phone</label>
+                                    <input type="text" class="form-control required" value="<?php echo set_value('cell-phone'); ?>" id="cell-phone" name="cell-phone">
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="birthdate"><span class="need">*</span> Birth Date</label>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-control required" id="birth-day" name="birth-day">
+                                            <option value="">Day</option>
+                                        <?php for($date=1; $date<=31; $date++): ?>
+                                            <option value="<?php echo $date ?>" <?php if($date == set_value('birth-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control required" id="birth-month" name="birth-month">
+                                            <option value="">Month</option>
+                                        <?php for($month=1; $month<=12; $month++): ?>
+                                            <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select class="form-control required" id="birth-year" name="birth-year">
+                                            <option value="">Year</option>
+                                        <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
+                                            <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div><!--End Row-->
                         </div><!-- /.box-body -->
     
                         <div class="box-footer">

@@ -9,19 +9,34 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                    <?php
-                    if(!empty($clientRecord))
-                    {
-                        foreach($clientRecord as $client)
-                        {
-                    ?>
-                        <p>First Name: <?php echo $client->first_name ?></p>
-                        <p>Last Name: <?php echo $client->last_name ?></p>
-                        <p>Client Code: <?php echo $client->client_code ?></p>
-                    <?php
-                        }
-                    }
-                    ?>
+                <?php if(!empty($clientRecord)): ?>
+                    <?php foreach($clientRecord as $client): ?>
+                        <div class="client">
+                            <div class="client-info">
+                                <p class="client-code"><?php echo $client->client_code ?></p>
+                                <ul class="client-details">
+                                    <li>
+                                        <?php echo "$client->last_name, $client->first_name"; ?>
+                                    </li>
+                                    <li>
+                                        <?php echo $client->home_phone; 
+                                        if(!empty($client->cell_phone)){ echo ", Cell: $client->cell_phone"; } ?>
+                                    </li>
+                                    <li>
+                                        <?php echo $client->location_name; ?>
+                                    </li>
+                                    <li>
+                                        <?php echo $formatted; ?>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="client-buttons">
+                                <a href="#">Add Food</a>
+                                <a href="#">View Info</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>

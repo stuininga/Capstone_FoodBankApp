@@ -44,7 +44,9 @@ class Client extends BaseController
         else
         {
             // $this->load->model('client_model');
-            $data['clientRecord'] = $this->client_model->getClientInfo();
+            $data['clientRecord'] = $this->client_model->getClientInfoAndLocations();
+
+            $data['formatted'] = "Hello, this is a test.";
             
             $this->global['pageTitle'] = 'Leduc Food Bank | Client Info';
 
@@ -91,6 +93,11 @@ class Client extends BaseController
             $this->form_validation->set_rules('fname','First Name','trim|required|max_length[70]');
             $this->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
             $this->form_validation->set_rules('location', 'Location', 'required');
+            $this->form_validation->set_rules('home-phone', 'Main Phone', 'trim|required|numeric|max_length[11]|min_length[10]');
+            $this->form_validation->set_rules('cell-phone', 'Cell Phone', 'trim|numeric|max_length[11]|min_length[10]');
+            $this->form_validation->set_rules('birth-day', 'Birth Day', 'required');
+            $this->form_validation->set_rules('birth-month', 'Birth Month', 'required');
+            $this->form_validation->set_rules('birth-year', 'Birth Year', 'required');
             
             //Check if this is the user's first time on the page
             if($this->form_validation->run() == FALSE)
@@ -104,11 +111,26 @@ class Client extends BaseController
                 $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname'))));
                 $locationID = $this->input->post('location');
+                $homePhone = ucwords($this->security->xss_clean($this->input->post('home-phone')));
+                $cellPhone = ucwords(strtolower($this->security->xss_clean($this->input->post('cell-phone'))));
+                $birthDay = $this->input->post('birth-day');
+                $birthMonth = $this->input->post('birth-month');
+                $birthYear = $this->input->post('birth-year');
+
+                //REMEMBER: Javascript to check if month/number of days in month match up. (February < 29, etc.)
+
+                $birthDate = "$birthDay/$birthMonth/$birthYear";
+
+                $time = strtotime($birthDate);
+                
+                $birthDate = date('Y-m-d',$time);
+
+                //$birthDate = date("d-m-Y", strtotime($birthDate));
+                
                 
                 //Store all the info from the form in an array
-                $clientInfo = array('first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID);
+                $clientInfo = array('first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID, 'home_phone'=>$homePhone, 'cell_phone'=>$cellPhone, 'client_birthdate'=>$birthDate);
                 
-                // $this->load->model('client_model');
                 //Pass the info from the form to the Client Model
                 $result = $this->client_model->addNewClient($clientInfo);
                 
@@ -131,8 +153,24 @@ class Client extends BaseController
     }
 
     /**
-     * This function is used 
+     * This function is used to format phone numbers for display
+     * @param string $dataToFormat : This is the data to be formatted for display.
+     * @param string $dataType : This is what format to use on the data
+     * @return string $formatted : This is the final formatted data
      */  
+    function formatForDisplay ($dataToFormat, $dataType){
+        switch ($dataType) {
+            case 'phone' :
+                $formatted = "(".substr($dataToFormat, 0, 3).") ".substr($dataToFormat, 3, 3)."-".substr($dataToFormat,6)
+                return $formatted;
+            break;//End of phone # formatting
+            case 'date' :
+
+            break;//End of date formatting
+
+
+        }//End of Switch
+    }
 
 
 

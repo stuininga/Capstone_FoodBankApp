@@ -145,3 +145,8 @@ div.database-navigation a.blue:hover {
 div.database-navigation a.red:hover {
     border-top: 6px solid #c82721;
 }
+
+/*** Form Styling ***/
+span.need {
+    color: #dd4b39;
+}
