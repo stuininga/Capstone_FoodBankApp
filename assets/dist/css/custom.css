@@ -150,3 +150,64 @@ div.database-navigation a.red:hover {
 span.need {
     color: #dd4b39;
 }
+
+/*** View/Search Clients ***/
+.client {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    background-color: #D6D7D9;
+    padding: 15px;
+    margin-bottom:20px;
+}
+.client-info {
+    width: 80%;
+    padding-right: 20px;
+}
+.client-info p.client-code {
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #3a3f48;
+}
+.client-info ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.client-info ul li {
+    width: 25%;
+    font-size: 18px;
+    color: #31353d;
+    display: flex;
+    flex-direction: column;
+}
+.client-info li .label {
+    font-size: 14px;
+    color: #6F757A;
+    margin-bottom: 2px;
+}
+.client-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+.client-buttons a:link {
+    color: #ffffff;
+    background-color: #83898D;
+    padding: 8px 5px;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+.client-buttons a:visited {
+    color: #ffffff;
+}
+.client-buttons a:hover {
+    color: #ffffff;
+    background-color: #5A6167;
+    text-decoration: none;
+}

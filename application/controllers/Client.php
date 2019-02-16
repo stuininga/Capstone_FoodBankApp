@@ -43,8 +43,9 @@ class Client extends BaseController
         }
         else
         {
-            // $this->load->model('client_model');
             $data['clientRecord'] = $this->client_model->getClientInfoAndLocations();
+
+            
 
             $data['formatted'] = "Hello, this is a test.";
             

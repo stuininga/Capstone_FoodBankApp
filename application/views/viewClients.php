@@ -8,7 +8,7 @@
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
                 <?php if(!empty($clientRecord)): ?>
                     <?php foreach($clientRecord as $client): ?>
                         <div class="client">
@@ -16,17 +16,28 @@
                                 <p class="client-code"><?php echo $client->client_code ?></p>
                                 <ul class="client-details">
                                     <li>
-                                        <?php echo "$client->last_name, $client->first_name"; ?>
+                                        <span class="label">Name</span>
+                                        <span class="detail">
+                                            <?php echo "$client->last_name, $client->first_name"; ?>
+                                        </span>
                                     </li>
                                     <li>
-                                        <?php echo $client->home_phone; 
-                                        if(!empty($client->cell_phone)){ echo ", Cell: $client->cell_phone"; } ?>
+                                        <span class="label">Phone</span>
+                                        <span class="detail">
+                                            <?php echo $client->home_phone; ?>
+                                        </span>
                                     </li>
                                     <li>
-                                        <?php echo $client->location_name; ?>
+                                        <span class="label">Region</span>
+                                        <span class="detail">
+                                            <?php echo $client->location_name; ?>
+                                        </span>
                                     </li>
                                     <li>
-                                        <?php echo $formatted; ?>
+                                        <span class="label">Birth Date</span>
+                                        <span class="detail">
+                                            <?php echo $formatted; ?>
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
