@@ -94,8 +94,22 @@ class Client extends BaseController
             $this->form_validation->set_rules('fname','First Name','trim|required|max_length[70]');
             $this->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
             $this->form_validation->set_rules('location', 'Location', 'required');
-            $this->form_validation->set_rules('home-phone', 'Main Phone', 'trim|required|numeric|max_length[11]|min_length[10]');
-            $this->form_validation->set_rules('cell-phone', 'Cell Phone', 'trim|numeric|max_length[11]|min_length[10]');
+
+            //Phone Validation
+            $this->form_validation->set_rules('home-phone1', 'Main Phone Area Code', 'trim|required|numeric|exact_length[3]');
+            $this->form_validation->set_rules('home-phone2', 'Main Phone Prefix', 'trim|required|numeric|exact_length[3]');
+            $this->form_validation->set_rules('home-phone3', 'Main Phone Suffix', 'trim|required|numeric|exact_length[4]');
+
+            //If the user has typed into the cell phone field, validate it 
+            if(($this->input->post('cell-phone1') != "") || ($this->input->post('cell-phone2') != "") || ($this->input->post('cell-phone3') != "")) {
+
+                //Set Cell Phone Rules
+                $this->form_validation->set_rules('cell-phone1', 'Cell Phone Area Code', 'trim|numeric|required|exact_length[3]');
+                $this->form_validation->set_rules('cell-phone2', 'Cell Phone Prefix', 'trim|numeric|required|exact_length[3]');
+                $this->form_validation->set_rules('cell-phone3', 'Cell Phone Suffix', 'trim|numeric|required|exact_length[4]');
+            }
+
+            //Birth Date Validation
             $this->form_validation->set_rules('birth-day', 'Birth Day', 'required');
             $this->form_validation->set_rules('birth-month', 'Birth Month', 'required');
             $this->form_validation->set_rules('birth-year', 'Birth Year', 'required');
@@ -112,11 +126,16 @@ class Client extends BaseController
                 $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname'))));
                 $locationID = $this->input->post('location');
-                $homePhone = ucwords($this->security->xss_clean($this->input->post('home-phone')));
-                $cellPhone = ucwords(strtolower($this->security->xss_clean($this->input->post('cell-phone'))));
+                $homePhone1 = ucwords($this->security->xss_clean($this->input->post('home-phone1')));
+                $homePhone2 = ucwords($this->security->xss_clean($this->input->post('home-phone2')));
+                $homePhone3 = ucwords($this->security->xss_clean($this->input->post('home-phone3')));
+                $cellPhone1 = ucwords($this->security->xss_clean($this->input->post('cell-phone1')));
+                $cellPhone2 = ucwords($this->security->xss_clean($this->input->post('cell-phone2')));
+                $cellPhone3 = ucwords($this->security->xss_clean($this->input->post('cell-phone3')));
                 $birthDay = $this->input->post('birth-day');
                 $birthMonth = $this->input->post('birth-month');
                 $birthYear = $this->input->post('birth-year');
+
 
                 //REMEMBER: Javascript to check if month/number of days in month match up. (February < 29, etc.)
 
@@ -127,6 +146,12 @@ class Client extends BaseController
                 $birthDate = date('Y-m-d',$time);
 
                 //$birthDate = date("d-m-Y", strtotime($birthDate));
+
+                //Concatenate Phone Number together
+                $homePhone = $homePhone1 . $homePhone2 . $homePhone3;
+
+                //Concatenate Cell Phone Number together
+                $cellPhone = $cellPhone1 . $cellPhone2 . $cellPhone3;
                 
                 
                 //Store all the info from the form in an array
@@ -159,19 +184,19 @@ class Client extends BaseController
      * @param string $dataType : This is what format to use on the data
      * @return string $formatted : This is the final formatted data
      */  
-    function formatForDisplay ($dataToFormat, $dataType){
-        switch ($dataType) {
-            case 'phone' :
-                $formatted = "(".substr($dataToFormat, 0, 3).") ".substr($dataToFormat, 3, 3)."-".substr($dataToFormat,6)
-                return $formatted;
-            break;//End of phone # formatting
-            case 'date' :
+    // function formatForDisplay ($dataToFormat, $dataType){
+    //     switch ($dataType) {
+    //         case 'phone' :
+    //             $formatted = "(".substr($dataToFormat, 0, 3).") ".substr($dataToFormat, 3, 3)."-".substr($dataToFormat,6)
+    //             return $formatted;
+    //         break;//End of phone # formatting
+    //         case 'date' :
 
-            break;//End of date formatting
+    //         break;//End of date formatting
 
 
-        }//End of Switch
-    }
+    //     }//End of Switch
+    // }
 
 
 

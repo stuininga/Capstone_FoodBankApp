@@ -36,7 +36,7 @@
                                     <li>
                                         <span class="label">Birth Date</span>
                                         <span class="detail">
-                                            <?php echo $formatted; ?>
+                                            <?php echo $client->client_birthdate; ?>
                                         </span>
                                     </li>
                                 </ul>

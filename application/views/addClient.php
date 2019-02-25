@@ -14,8 +14,6 @@
             <div class="col-md-8">
               <!-- general form elements -->
                 
-                
-                
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Enter Client Details</h3>
@@ -52,35 +50,69 @@
                                     </div>
                                 </div>
                             </div><!--End Row-->
+
+                            <!--Phone Numbers-->
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="home-phone"><span class="need">*</span> Main Phone</label>
-                                    <input type="text" class="form-control required" value="<?php echo set_value('home-phone'); ?>" id="home-phone" name="home-phone">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="cell-phone">Cell Phone</label>
-                                    <input type="text" class="form-control required" value="<?php echo set_value('cell-phone'); ?>" id="cell-phone" name="cell-phone">
-                                </div>
-                            </div><!--End Row-->
+                                <div class="col-md-6 box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="home-phone"><span class="need">*</span> Home Phone</label>
+                                        </div>
+                                    </div><!--End Row-->
+                                    <div class="row">
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('home-phone1'); ?>" id="home-phone1" name="home-phone1" placeholder="###">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('home-phone2'); ?>" id="home-phone2" name="home-phone2" placeholder="###">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('home-phone3'); ?>" id="home-phone3" name="home-phone3" placeholder="####">
+                                        </div>
+                                    </div><!--End Row-->
+                                </div><!--End of inner box-body-->
+                                <div class="col-md-6 box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <label for="cell-phone">Cell Phone</label>
+                                        </div>
+                                    </div><!--End Row-->
+                                    <div class="row">
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('cell-phone1'); ?>" id="cell-phone1" name="cell-phone1" placeholder="###">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('cell-phone2'); ?>" id="cell-phone2" name="cell-phone2" placeholder="###">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="col-md-4 phone">
+                                            <input type="text" class="form-control required" value="<?php echo set_value('cell-phone3'); ?>" id="cell-phone3" name="cell-phone3" placeholder="####">
+                                        </div>
+                                    </div><!--End Row-->
+                                </div><!--End of inner box-body-->
+                            </div><!--End Row-->   
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="birthdate"><span class="need">*</span> Birth Date</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <select class="form-control required" id="birth-day" name="birth-day">
-                                            <option value="">Day</option>
-                                        <?php for($date=1; $date<=31; $date++): ?>
-                                            <option value="<?php echo $date ?>" <?php if($date == set_value('birth-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
-                                        <?php endfor; ?>
-                                    </select>
-                                </div>
                                 <div class="col-md-4">
                                     <select class="form-control required" id="birth-month" name="birth-month">
                                             <option value="">Month</option>
                                         <?php for($month=1; $month<=12; $month++): ?>
                                             <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control required" id="birth-day" name="birth-day">
+                                            <option value="">Day</option>
+                                        <?php for($date=1; $date<=31; $date++): ?>
+                                            <option value="<?php echo $date ?>" <?php if($date == set_value('birth-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
                                         <?php endfor; ?>
                                     </select>
                                 </div>

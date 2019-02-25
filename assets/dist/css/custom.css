@@ -211,3 +211,26 @@ span.need {
     background-color: #5A6167;
     text-decoration: none;
 }
+
+.col-md-6.box-body {
+    padding-left: 15px;
+}
+.phone {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+}
+.phone:first-of-type {
+    padding-left: 15px;
+}
+.phone .form-control {
+    width: 80%;
+}
+.phone span {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    vertical-align: center;
+    align-self: center;
+}
