@@ -102,7 +102,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <select class="form-control required" id="birth-month" name="birth-month">
-                                            <option value="">Month</option>
+                                        <option value="">Month</option>
                                         <?php for($month=1; $month<=12; $month++): ?>
                                             <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
                                         <?php endfor; ?>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control required" id="birth-day" name="birth-day">
-                                            <option value="">Day</option>
+                                        <option value="">Day</option>
                                         <?php for($date=1; $date<=31; $date++): ?>
                                             <option value="<?php echo $date ?>" <?php if($date == set_value('birth-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
                                         <?php endfor; ?>
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <select class="form-control required" id="birth-year" name="birth-year">
-                                            <option value="">Year</option>
+                                        <option value="">Year</option>
                                         <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
                                             <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                         <?php endfor; ?>
@@ -128,7 +128,7 @@
                         </div><!-- /.box-body -->
     
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="submit" class="btn btn-primary" name="insert" value="Insert" />
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
