@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> All Clients
-        <small>Client Testing 123</small>
+        <i class="fa fa-users"></i> Search Clients
+        <small>View Clients</small>
       </h1>
     </section>
     <section class="content">
@@ -24,7 +24,11 @@
                                     <li>
                                         <span class="label">Phone</span>
                                         <span class="detail">
-                                            <?php echo $client->home_phone; ?>
+                                            <?php 
+                                                $phoneNumber = $client->home_phone;
+                                                $formatted = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $phoneNumber);
+                                                echo $formatted; 
+                                            ?>
                                         </span>
                                     </li>
                                     <li>

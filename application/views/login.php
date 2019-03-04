@@ -2,11 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>CodeInsect | Admin System Log in</title>
+    <title>Leduc Food Bank | Log In</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -14,16 +12,27 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Custom CSS File -->
+    <link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
+
+    <!-- Favion -->
+    <link rel="icon" type="image/png" href="assets/dist/img/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/dist/img/favicon-16x16.png" sizes="16x16" />
+
   </head>
-  <body class="hold-transition login-page">
+  <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>Leduc Food Bank</b><br>Admin System</a>
+        <div class="img-container">
+          <img src="<?php echo base_url(); ?>assets/dist/img/logo.png" alt="Leduc Food Bank Logo"/>
+        </div>
+        <h1>Log In</h1>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign In</p>
         <?php $this->load->helper('form'); ?>
         <div class="row">
             <div class="col-md-12">
@@ -31,27 +40,25 @@
             </div>
         </div>
         <?php
-        $this->load->helper('form');
-        $error = $this->session->flashdata('error');
-        if($error)
-        {
+          $this->load->helper('form');
+          $error = $this->session->flashdata('error');
+          if($error) {
             ?>
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $error; ?>                    
             </div>
         <?php }
-        $success = $this->session->flashdata('success');
-        if($success)
-        {
-            ?>
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $success; ?>                    
-            </div>
-        <?php } ?>
+          $success = $this->session->flashdata('success');
+          if($success) {
+              ?>
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <?php echo $success; ?>                    
+              </div>
+          <?php } ?>
         <form action="<?php echo base_url(); ?>loginMe" method="post">
-          <div class="form-group has-feedback">
+          <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" name="email" required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
@@ -59,26 +66,12 @@
             <input type="password" class="form-control" placeholder="Password" name="password" required />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
-          <div class="row">
-            <div class="col-xs-8">    
-              <!-- <div class="checkbox icheck">
-                <label>
-                  <input type="checkbox"> Remember Me
-                </label>
-              </div>  -->                       
-            </div><!-- /.col -->
-            <div class="col-xs-4">
-              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Sign In" />
-            </div><!-- /.col -->
+          <div class="row buttons">
+              <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a>
+              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Log In" />
           </div>
-        </form>
-
-        <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a><br>
-        
+        </form>   
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-
-    <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

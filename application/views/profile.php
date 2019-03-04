@@ -21,16 +21,17 @@ $role = $userInfo->role;
             <!-- left column -->
             <div class="col-md-3">
               <!-- general form elements -->
-
-
-                <div class="box box-warning">
+                <div class="box box-user">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url(); ?>assets/dist/img/avatar.png" alt="User profile picture">
-                        <h3 class="profile-username text-center"><?= $name ?></h3>
-
-                        <p class="text-muted text-center"><?= $role ?></p>
+                        <h3 class="profile-username">Profile Details</h3>
 
                         <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Name: </b> <a class="pull-right"><?= $name ?></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>User Role: </b> <a class="pull-right"><?= $role ?></a>
+                            </li>
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right"><?= $email ?></a>
                             </li>
@@ -41,7 +42,7 @@ $role = $userInfo->role;
             </div>
 
             <div class="col-md-5">
-                <div class="nav-tabs-custom">
+                <div class="nav-tabs-custom box box-user">
                     <ul class="nav nav-tabs">
                         <li class="<?= ($active == "details")? "active" : "" ?>"><a href="#details" data-toggle="tab">Details</a></li>
                         <li class="<?= ($active == "changepass")? "active" : "" ?>"><a href="#changepass" data-toggle="tab">Change Password</a></li>                        

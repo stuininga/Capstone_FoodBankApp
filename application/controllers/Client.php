@@ -51,6 +51,13 @@ class Client extends BaseController
         }
     }
 
+
+    /**
+     * This function is used to 
+     */
+
+
+
     /**
      * This function is used to load the add new client form
      */
@@ -172,7 +179,8 @@ class Client extends BaseController
                         $this->session->set_flashdata('success', 'New Client was added successfully');
 
                         //Reload the page
-                        redirect('addNewClient');
+                        redirect('addNewClient', 'refresh');      
+                        // header('Location:addNewClient');          
                     }
                     else
                     {
@@ -187,35 +195,6 @@ class Client extends BaseController
         }//End of check if user is logged in
     }//End of addNewClient Function
 
-
-
-
-
-
-
-
-
-
-    
-    /**
-     * This function is used to format phone numbers for display
-     * @param string $dataToFormat : This is the data to be formatted for display.
-     * @param string $dataType : This is what format to use on the data
-     * @return string $formatted : This is the final formatted data
-     */  
-    // function formatForDisplay ($dataToFormat, $dataType){
-    //     switch ($dataType) {
-    //         case 'phone' :
-    //             $formatted = "(".substr($dataToFormat, 0, 3).") ".substr($dataToFormat, 3, 3)."-".substr($dataToFormat,6)
-    //             return $formatted;
-    //         break;//End of phone # formatting
-    //         case 'date' :
-
-    //         break;//End of date formatting
-
-
-    //     }//End of Switch
-    // }
 
 
 

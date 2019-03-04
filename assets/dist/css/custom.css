@@ -234,3 +234,98 @@ span.need {
     vertical-align: center;
     align-self: center;
 }
+
+/***** LOG IN PAGE *****/
+.login-page .login-box {
+    width: 30%;
+    margin: 40px auto;
+    background-color: #5a6167;
+    padding: 50px;
+    border-radius: 10px;
+}
+.login-page .img-container {
+    width: 25%;
+    margin: 0 auto;
+}
+.login-page img {
+    width: 100%;
+}
+.login-page h1 {
+    font-size: 35px;
+    color: #ffffff;
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+.login-page .row.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px 0 16px;
+}
+.login-page .row.buttons a:link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.login-page .row.buttons a:visited {
+    color: #ffffff;
+}
+.login-page .row.buttons a:hover {
+    color: #b3ca4d;
+}
+.login-page .row.buttons input {
+    background-color: #b3ca4d;
+    width: 30%;
+    border: none;
+}
+.login-page .row.buttons input:hover {
+    background-color: #97aa41;
+}
+@media only screen and (max-width: 1064px) {
+    .login-page .login-box {
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 568px) {
+    .login-page .login-box {
+        width: 95%;
+    }
+    .login-page .row.buttons {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .login-page .row.buttons input {
+        margin-bottom: 20px;
+    }
+}
+
+/*** Profile ***/
+.nav.nav-tabs {
+    border-bottom: 2px solid #f4f4f4;
+}
+.nav.nav-tabs li {
+    width: 49%;
+}
+.nav.nav-tabs li a {
+    width: 100%;
+    padding: 8px 0;
+    background-color: transparent;
+    display: inline-block;
+    text-align: center;
+    border: none;
+}
+.nav-tabs-custom > .nav-tabs >li.active {
+    /* border-top-color: #31353d; */
+    background-color: #D6D7D9;
+    border: none;
+}
+
+/*** Users ***/
+.user-button {
+    background-color: #5a6167;
+    width: 30%;
+    border: none;
+}
+.user-button:hover {
+    background-color: #31353d;
+}
+
