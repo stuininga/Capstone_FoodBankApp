@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="box box-green">
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="searchClients" action="<?php echo base_url() ?>viewClients" method="post" role="form">
+                    <form role="form" id="searchClients" action="<?php echo base_url() ?>searchClients" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-2">                                
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="fname-s">Cell/Home Phone Number</label>
+                                        <label for="fname-s">Home Phone Number</label>
                                         <div class="phone-search">
                                             <div>
                                                 <input type="text" class="form-control" value="<?php echo set_value('phone-s1'); ?>" id="phone-s1" name="phone-s1" placeholder="###">
@@ -65,7 +65,7 @@
                     </div><!--End of box-->
                 </form>
             </div>
-        </div><!--End of search-fields-->
+        </div>End of search-fields
         <div class="row">
             <div class="col-md-12">
                 <?php if(!empty($clientRecord)): ?>

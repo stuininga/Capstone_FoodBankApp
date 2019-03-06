@@ -67,6 +67,18 @@ class Client_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * This function is used to search all clients based on the user's criteria
+     * @param string $searchQuery : This is the query compiled using the user's criteria
+     * @return number $result : This is the result of the query
+     */
+    function searchClients($searchQuery)
+    {
+        $result = $this->db->query($searchQuery);
+        
+        return $result->result();
+    }
+
 
 
     // $query_userdetails = $this->db->query("SELECT * 
