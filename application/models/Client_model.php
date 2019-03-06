@@ -69,6 +69,9 @@ class Client_model extends CI_Model
 
 
 
+    // $query_userdetails = $this->db->query("SELECT * 
+    // FROM users WHERE email = '$user_email' ");
+
 
 }//End of class
 ?>

@@ -2,11 +2,70 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Search Clients
+        <i class="fa fa-users green"></i> Search Clients
         <small>View Clients</small>
       </h1>
     </section>
     <section class="content">
+        <div class="row search-fields">
+            <div class="col-md-12">
+                <div class="box box-green">
+                    <?php $this->load->helper("form"); ?>
+                    <form role="form" id="searchClients" action="<?php echo base_url() ?>viewClients" method="post" role="form">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-2">                                
+                                    <div class="form-group">
+                                        <label for="fname-s">First Name</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('fname-s'); ?>" id="fname-s" name="fname-s" maxlength="70">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="lname-s">Last Name</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('lname-s'); ?>" id="lname-s" name="lname-s" maxlength="70">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="fname-s">Cell/Home Phone Number</label>
+                                        <div class="phone-search">
+                                            <div>
+                                                <input type="text" class="form-control" value="<?php echo set_value('phone-s1'); ?>" id="phone-s1" name="phone-s1" placeholder="###">
+                                                <span>-</span>
+                                            </div>
+                                            <div>
+                                                <input type="text" class="form-control" value="<?php echo set_value('phone-s2'); ?>" id="phone-s2" name="phone-s2" placeholder="###">
+                                                <span>-</span>
+                                            </div>
+                                            <div>
+                                                <input type="text" class="form-control" value="<?php echo set_value('phone-s3'); ?>" id="phone-s3" name="phone-s3" placeholder="####">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="location-s">Location</label>
+                                        <select class="form-control" id="location-s" name="location-s">
+                                            <option value="">Select Region</option>
+                                            <?php foreach ($locationsRecord as $location): ?>
+                                                    <option value="<?php echo $location->location_id ?>" <?php if($location->location_id == set_value('location')) {echo "selected=selected";} ?>><?php echo $location->location_name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group row-buttons">
+                                        <input type="submit" class="btn btn-primary btn-block btn-flat" value="Search" />
+                                    </div>
+                                </div>
+                            </div><!--End row-->
+                        </div><!--End box-body-->
+                    </div><!--End of box-->
+                </form>
+            </div>
+        </div><!--End of search-fields-->
         <div class="row">
             <div class="col-md-12">
                 <?php if(!empty($clientRecord)): ?>

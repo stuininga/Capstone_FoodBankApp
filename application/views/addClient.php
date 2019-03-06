@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Add Client
+        <i class="fa fa-users green"></i> Add Client
         <small>Add New Client</small>
       </h1>
     </section>
@@ -14,7 +14,7 @@
             <div class="col-md-8">
               <!-- general form elements -->
                 
-                <div class="box box-primary">
+                <div class="box box-green">
                     <div class="box-header">
                         <h3 class="box-title">Enter Client Details</h3>
                     </div><!-- /.box-header -->

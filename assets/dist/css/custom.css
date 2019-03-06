@@ -166,7 +166,8 @@ span.need {
 }
 .client-info p.client-code {
     margin-bottom: 25px;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: bold;
     color: #3a3f48;
 }
 .client-info ul {
@@ -272,12 +273,12 @@ span.need {
 .login-page .row.buttons a:hover {
     color: #b3ca4d;
 }
-.login-page .row.buttons input {
+.login-page .row.buttons input, .row-buttons input {
     background-color: #b3ca4d;
     width: 30%;
     border: none;
 }
-.login-page .row.buttons input:hover {
+.login-page .row.buttons input:hover, .row-buttons input:hover {
     background-color: #97aa41;
 }
 @media only screen and (max-width: 1064px) {
@@ -329,3 +330,24 @@ span.need {
     background-color: #31353d;
 }
 
+/*** Search Clients ***/
+.search-fields .row-buttons input {
+    margin-top: 32px;
+}
+.form-group .phone-search {
+    display: flex;
+    justify-content: space-between;
+}
+.form-group .phone-search div {
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-group .phone-search div input {
+    width: 85%;
+}
+.form-group .phone-search div span {
+    width: 15%;
+    text-align: center;
+}
