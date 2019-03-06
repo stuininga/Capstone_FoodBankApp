@@ -11,12 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!-- Theme style -->
     <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-    <!-- Custom CSS File -->
+    <!-- Custom CSS File-->
     <link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
-    <!-- Favion -->
-    <link rel="icon" type="image/png" href="assets/dist/img/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="assets/dist/img/favicon-16x16.png" sizes="16x16" />
-
     <style>
     	.error{
     		color:red;
@@ -129,7 +125,7 @@
             <?php if($role == ROLE_ADMIN) {?>
               <li class="header">REPORTS</li>
               <li class="treeview">
-                <a class="<?php echo $databaseColor; ?>" href="#" >
+                <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url(); ?>viewReports" >
                   <i class="fas fa-file"></i> 
                   <span>View Reports</span>
                 </a>

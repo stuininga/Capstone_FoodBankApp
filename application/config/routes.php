@@ -91,9 +91,13 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 /* Client Routes */
 $route['allClients'] = 'client/viewClients';
-$route['searchClients'] = 'client/searchClients';
 $route['addNewClient'] = 'client/addNewClient';
 $route['addNewClientForm'] = 'client/addNewClientForm';
+
+/* Report Routes */
+$route['viewReports'] = 'reports/viewReports';
+$route['viewPDF'] = 'reports/viewPDF';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
