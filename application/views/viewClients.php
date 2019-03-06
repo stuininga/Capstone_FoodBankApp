@@ -65,7 +65,7 @@
                     </div><!--End of box-->
                 </form>
             </div>
-        </div>End of search-fields
+        </div><!--End of search-fields-->
         <div class="row">
             <div class="col-md-12">
                 <?php if(!empty($clientRecord)): ?>

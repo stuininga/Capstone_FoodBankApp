@@ -138,6 +138,8 @@ class Client extends BaseController
                 
                 if ($birthDate == "") {
                     $this->session->set_flashdata('error', 'Submitted date is invalid.');
+                    //redirect('addNewClient'); 
+                    $this->addNewClientForm();     
                 }
                 else {
                     //Store all the info from the form in an array
@@ -159,8 +161,7 @@ class Client extends BaseController
                     else
                     {
                         //The client was not inserted, display an error
-                        $this->session->set_flashdata('error', 'Client insert failed');
-
+                        $this->session->set_flashdata('error', 'Client insert failed');;  
                         $this->addNewClientForm();
                     }
                 }//End of check if date is valid
@@ -212,7 +213,7 @@ class Client extends BaseController
                 $this->form_validation->set_rules('phone-s3', 'Phone Suffix', 'trim|numeric|required|exact_length[4]');
             }
 
-            if($_SERVER['REQUEST_METHOD'] == "POST")   {
+            if( $this->form_validation->run)   {
                 echo "THE BUTTON WAS PRESSED GOOD JOB";
 
                 //If the validation has passed, get the values
@@ -235,7 +236,7 @@ class Client extends BaseController
                 $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.first_name ='Sarah'";
 
                 //Pass the query to the client_model
-                $data['clientRecord'] = $this->client_model->getClientInfo();
+                $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
                 
                 $this->loadViews("viewClients", $this->global, $data, NULL);
             }
