@@ -68,6 +68,9 @@
         </div><!--End of search-fields-->
         <div class="row">
             <div class="col-md-12">
+                <?php if(empty($noRecords)): ?>
+                    <p>No clients found matching that criteria.</p>
+                <?php endif; ?>
                 <?php if(!empty($clientRecord)): ?>
                     <?php foreach($clientRecord as $client): ?>
                         <div class="client">

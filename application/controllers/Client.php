@@ -182,13 +182,10 @@ class Client extends BaseController
         {
             $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
 
-            $data['clientRecord'] = $this->client_model->getClientInfoAndLocations();
             $data['locationsRecord'] = $this->client_model->getLocations();
 
-            echo "Accessed viewClients";
-            // print_r($data);
             //Don't load any clients until the results have been narrowed (for speed reasons)
-            $this->loadViews("viewClients", $this->global, $data, NULL);
+            $this->loadViews("viewClients", $this->global, NULL);
         }
     }
 
@@ -229,15 +226,22 @@ class Client extends BaseController
 
             // Load the page based on whether the button was pressed
             if(isset($_POST['search-button']))   {
+                //Check that the user has ACTUALLY searched something
+                if ((!empty($firstName)) || (!empty($lastName)) || (!empty($locationID)) || (!empty($phone))) {
+                    //Begin assembling the query!
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.first_name LIKE \"%$firstName%\" AND Client.last_name LIKE \"%$lastName%\" AND Client.location_id LIKE \"%$locationID%\" AND Client.home_phone LIKE \"%$phone%\"";
 
-                //Begin assembling the query!
-                $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.first_name ='Sarah'";
+                    //Pass the query to the client_model
+                    $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
 
-                //Pass the query to the client_model
-                $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
-
-                $this->searchedClients($searchQuery);
+                    $this->searchedClients($searchQuery);
+                }  
+                //If they didn't search anything, continue displaying the "blank" version of the page
+                else {
+                    $this->loadViews("viewClients", $this->global, NULL);
+                }   
             }
+            //If they didn't press the button display the "blank" version of the page
             else {
                 $this->loadViews("viewClients", $this->global, NULL);
             }
@@ -256,18 +260,17 @@ class Client extends BaseController
         else
         {
             $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
-
-            // $data['clientRecord'] = $this->client_model->searchClients($data);
-            $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
             $data['locationsRecord'] = $this->client_model->getLocations();
 
-            echo "Client";
-            print "<pre>";
-            print_r($data['clientRecord']);
-            print "</pre>";
 
-            echo "Accessed searchedClients";
-            //Don't load any clients until the results have been narrowed (for speed reasons)
+            $result = $this->client_model->searchClients($searchQuery);
+            
+            if($result > 0) {
+                $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
+            }
+            else {
+                $data['noRecords'] = $this->client_model->searchClients($searchQuery);;
+            }
             $this->loadViews("viewClients", $this->global, $data, NULL);
         }
     }

@@ -90,7 +90,6 @@ $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUs
 $route['createPasswordUser'] = "login/createPasswordUser";
 
 /* Client Routes */
-$route['allClients'] = 'client/viewClients';
 $route['searchClients'] = 'client/searchClients';
 $route['addNewClient'] = 'client/addNewClient';
 $route['addNewClientForm'] = 'client/addNewClientForm';
