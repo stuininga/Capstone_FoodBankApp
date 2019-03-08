@@ -155,8 +155,7 @@ class Client extends BaseController
                         $this->session->set_flashdata('success', 'New Client was added successfully');
 
                         //Reload the page
-                        redirect('addNewClient', 'refresh');      
-                        // header('Location:addNewClient');          
+                        redirect('addNewClient');               
                     }
                     else
                     {
@@ -184,7 +183,10 @@ class Client extends BaseController
             $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
 
             $data['clientRecord'] = $this->client_model->getClientInfoAndLocations();
+            $data['locationsRecord'] = $this->client_model->getLocations();
 
+            echo "Accessed viewClients";
+            // print_r($data);
             //Don't load any clients until the results have been narrowed (for speed reasons)
             $this->loadViews("viewClients", $this->global, $data, NULL);
         }
@@ -199,8 +201,9 @@ class Client extends BaseController
             $this->loadThis();
         }
         else {
-            $this->global['pageTitle'] = 'Leduc Food Bank | Hello';
-            $this->loadViews("viewClients", $this->global, NULL);
+            //Set pageTitle
+            $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
+
             //VALIDATE
             $this->load->library('form_validation');
 
@@ -213,38 +216,61 @@ class Client extends BaseController
                 $this->form_validation->set_rules('phone-s3', 'Phone Suffix', 'trim|numeric|required|exact_length[4]');
             }
 
-            if( $this->form_validation->run)   {
-                echo "THE BUTTON WAS PRESSED GOOD JOB";
+            //If the validation has passed, get the values
+            $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname-s'))));
+            $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname-s'))));
+            $locationID = $this->input->post('location-s');
+            $phone1 = ucwords($this->security->xss_clean($this->input->post('phone-s1')));
+            $phone2 = ucwords($this->security->xss_clean($this->input->post('phone-s2')));
+            $phone3 = ucwords($this->security->xss_clean($this->input->post('phone-s3')));
 
-                //If the validation has passed, get the values
-                $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname-s'))));
-                $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname-s'))));
-                $locationID = $this->input->post('location-s');
-                $phone1 = ucwords($this->security->xss_clean($this->input->post('phone-s1')));
-                $phone2 = ucwords($this->security->xss_clean($this->input->post('phone-s2')));
-                $phone3 = ucwords($this->security->xss_clean($this->input->post('phone-s3')));
+            //Concatenate Phone Number together
+            $phone = $phone1 . $phone2 . $phone3;
 
-                //Concatenate Phone Number together
-                $phone = $phone1 . $phone2 . $phone3;
-
-                // $this->db->select('Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.cell_phone, Location.location_name');
-                // $this->db->from('lfb_clients as Client');
-                // $this->db->join('lfb_clients_location as Location','Client.location_id = Location.location_id');
-
+            // Load the page based on whether the button was pressed
+            if(isset($_POST['search-button']))   {
 
                 //Begin assembling the query!
                 $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.first_name ='Sarah'";
 
                 //Pass the query to the client_model
                 $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
-                
-                $this->loadViews("viewClients", $this->global, $data, NULL);
-            }
 
-            
+                $this->searchedClients($searchQuery);
+            }
+            else {
+                $this->loadViews("viewClients", $this->global, NULL);
+            }
         }//End of check if user is logged in
     }//End of searchClients Function
 
+    /**
+     * This function is used to load all clients in the database
+     */
+    function searchedClients($searchQuery)
+    {
+        if($this->isAdmin() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
+
+            // $data['clientRecord'] = $this->client_model->searchClients($data);
+            $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
+            $data['locationsRecord'] = $this->client_model->getLocations();
+
+            echo "Client";
+            print "<pre>";
+            print_r($data['clientRecord']);
+            print "</pre>";
+
+            echo "Accessed searchedClients";
+            //Don't load any clients until the results have been narrowed (for speed reasons)
+            $this->loadViews("viewClients", $this->global, $data, NULL);
+        }
+    }
 
 
 

@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group row-buttons">
-                                        <input type="submit" class="btn btn-primary btn-block btn-flat" value="Search" />
+                                        <input type="submit" name="search-button" class="btn btn-primary btn-block btn-flat" value="Search" />
                                     </div>
                                 </div>
                             </div><!--End row-->

@@ -74,9 +74,11 @@ class Client_model extends CI_Model
      */
     function searchClients($searchQuery)
     {
-        $result = $this->db->query($searchQuery);
+        $query = $this->db->query($searchQuery);
         
-        return $result->result();
+        // print_r($result->result());
+        echo "Accessed Model";
+        return $query->result();
     }
 
 
