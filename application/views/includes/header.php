@@ -39,6 +39,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Favion -->
+    <link rel="icon" type="image/png" href="assets/dist/img/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/dist/img/favicon-16x16.png" sizes="16x16" />
+
   </head>
   <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -116,7 +121,7 @@
               </a>
             </li>
             <li class="treeview">
-              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url()?>allClients">
+              <a class="<?php echo $databaseColor; ?>" href="<?php echo base_url()?>searchClients">
                 <i class="fas fa-search"></i> 
                 <span>Search Clients</span></i>
               </a>
