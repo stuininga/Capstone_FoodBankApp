@@ -68,9 +68,9 @@
         </div><!--End of search-fields-->
         <div class="row">
             <div class="col-md-12">
-                <?php if(empty($noRecords)): ?>
-                    <p>No clients found matching that criteria.</p>
-                <?php endif; ?>
+                <?php if(!empty($noRecords)) {
+                    echo "<p>$noRecords</p>";
+                } ?>
                 <?php if(!empty($clientRecord)): ?>
                     <?php foreach($clientRecord as $client): ?>
                         <div class="client">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="client-buttons">
                                 <a href="#">Add Food</a>
-                                <a href="#">View Info</a>
+                                <a href="<?php echo base_url()?>editClient?id=<?php echo $client->client_code; ?>">View/Edit Info</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

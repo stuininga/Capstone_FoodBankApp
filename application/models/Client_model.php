@@ -68,12 +68,24 @@ class Client_model extends CI_Model
     }
 
     /**
-     * This function is used to search all clients based on the user's criteria
+     * This function is used to search all clients based on the user's criteria and return select info
      * @param string $searchQuery : This is the query compiled using the user's criteria
      * @return number $result : This is the result of the query
      */
     function searchClients($searchQuery)
     {
+        $query = $this->db->query($searchQuery);
+        return $query->result();
+    }
+
+    /**
+     * This function is used to select all info for a single client
+     * @param int $clientID : This is id of the client to pull the information for
+     * @return number $result : This is the result of the query
+     */
+    function getClient($clientID)
+    {
+        $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
         $query = $this->db->query($searchQuery);
         return $query->result();
     }

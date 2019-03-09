@@ -2,13 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users green"></i> Add Client
-        <small>Add New Client</small>
+        <i class="fas fa-user-edit green"></i> View Client Info
+        <small>View and edit a client's details</small>
       </h1>
     </section>
     
     <section class="content">
-    
         <div class="row">
             <!-- left column -->
             <div class="col-md-8">
@@ -16,12 +15,18 @@
                 
                 <div class="box box-green">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Client Details</h3>
+                        <h3 class="box-title">Edit Client Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addClient" action="<?php echo base_url() ?>addNewClient" method="post" role="form">
+                    <form role="form" id="addClient" action="<?php echo base_url() ?>editClient?id=<?php echo $client_code; ?>" method="post" role="form">
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="ccode">Client Code</label>
+                                    <input type="text" class="form-control" value="<?php echo set_value('ccode', $client_code) ?>" id="ccode" name="ccode" disabled />
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
