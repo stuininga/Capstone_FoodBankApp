@@ -38,7 +38,7 @@ class User_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function userListing($searchText = '', $page, $segment)
+    function userListing($searchText = '')
     {
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.createdDtm, Role.role');
         $this->db->from('tbl_users as BaseTbl');
@@ -51,7 +51,7 @@ class User_model extends CI_Model
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
         $this->db->order_by('BaseTbl.userId', 'DESC');
-        $this->db->limit($page, $segment);
+        //$this->db->limit($page, $segment);
         $query = $this->db->get();
         
         $result = $query->result();        

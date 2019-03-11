@@ -45,13 +45,7 @@ class User extends BaseController
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             
-            $this->load->library('pagination');
-            
-            $count = $this->user_model->userListingCount($searchText);
-
-			$returns = $this->paginationCompress ( "userListing/", $count, 10 );
-            
-            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
+            $data['userRecords'] = $this->user_model->userListing($searchText);
             
             $this->global['pageTitle'] = 'Leduc Food Bank | User Listing';
             
