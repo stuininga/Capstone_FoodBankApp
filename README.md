@@ -16,17 +16,18 @@ Leduc Food Bank Web App
 BUILT WITH
 ----------
 * codeigniter
-* 
-* 
+* PHP
+* Javascript 
 
 
 FEATURES
 --------
-* 1
-* 2
-* 3
-* 4
-* 5
+* Manage users
+* Add new users
+* Add new clients
+* Edit client data
+* View & print reports
+
 
 SCREENSHOTS
 ------------
@@ -34,14 +35,20 @@ SCREENSHOTS
 
 CODE EXAMPLE
 ------------
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+```PHP
+    function getClientInfo()
+    {
+        $this->db->select('first_name, last_name, client_code, location_id, client_birthdate, home_phone, cell_phone');
+        $this->db->from('lfb_clients');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
 ```
 
 CREDITS
 -------
-1. [Link to github account](https://github.com/stuininga)
-2. [Link to github account](https://github.com/gregorybradley)
-3. [Link to github account](https://github.com/rberntsen21)
-4. [Link to github account](https://github.com/PengweiZhou)
+1. [Sarah Tuininga](https://github.com/stuininga)
+2. [Gregory Bradley](https://github.com/gregorybradley)
+3. [Ryan Berntsen](https://github.com/rberntsen21)
+4. [Pengwei Zhou](https://github.com/PengweiZhou)
