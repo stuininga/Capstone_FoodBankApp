@@ -1,6 +1,6 @@
 CODEBYTES DEVELOPMENT
 =====================
-> Mauris a nisi nec eros blandit cursus. Donec porttitor fringilla dui, at tincidunt turpis commodo ac. Suspendisse sit amet mi et purus consectetur tempor.
+> Web Dev group from Northern Alberta Institute of Technology.
 
 
 
@@ -9,7 +9,7 @@ Leduc Food Bank Web App
 
 
 >
-> Etiam pulvinar sed libero id imperdiet. Nulla luctus ipsum sed pharetra consectetur. Vivamus suscipit risus at dolor pretium elementum. Donec mi tortor, rutrum sit amet suscipit id, egestas fringilla ligula. Nulla facilisi. Suspendisse sed sollicitudin ex. Etiam eget lacinia nunc, id sagittis tortor.
+> This is a Web application that will allow three different user levels (Admin, Manager, and Employee). It will allow the users to add new clients into their databse, edit client information, and search through existing clients. They will also have the ability to print reports with information pulled from the database.
 >
 >
 
