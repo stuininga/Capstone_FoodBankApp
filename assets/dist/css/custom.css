@@ -281,6 +281,49 @@ span.need {
 .login-page .row.buttons input:hover, .row-buttons input:hover {
     background-color: #97aa41;
 }
+
+/*** Form Buttons ***/
+.form-buttons input, .form-buttons a {
+    width: 20%;
+    border: none;
+    outline: none;
+    color: #ffffff;
+}
+/* Client primary */
+.form-buttons .client-primary {
+    background-color: #b3ca4d;
+}
+.form-buttons .client-primary:hover {
+    background-color: #97aa41;
+}
+/* General secondary */
+.form-buttons .secondary {
+    background-color: #6F757A;
+}
+.form-buttons .secondary:hover {
+    background-color: #83898D;
+}
+/* User primary */
+.form-buttons .user-primary {
+    background-color: #3a3f48;
+}
+.form-buttons .user-primary:hover {
+    background-color: #2B2F36;
+}
+
+/* Users Listing */
+.form-buttons.form-group .user-primary {
+    margin: 40px 20px 0 0;
+}
+.input-group-btn .searchList {
+    color: #ffffff;
+    background-color: #6F757A;
+    padding: 7.5px;
+}
+.input-group-btn .searchList:hover {
+    background-color: #33373F;
+}
+
 @media only screen and (max-width: 1064px) {
     .login-page .login-box {
         width: 60%;

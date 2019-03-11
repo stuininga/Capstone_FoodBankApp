@@ -99,10 +99,24 @@
                                             <?php echo $client->location_name; ?>
                                         </span>
                                     </li>
-                                    <li>
+                                    <li>                                        
+                                        <?php 
+                                            //Split birthdate to format prettily
+                                            $birthDate = explode('-', $client->client_birthdate);
+
+                                            //Get the name of the month for display instead of the number
+                                            $dateObj = DateTime::createFromFormat('!m', $birthDate[1]);
+                                            $monthName = $dateObj->format('F');
+
+                                            //Only display the first 3 characters
+                                            $monthName = substr($monthName, 0, 3);
+
+                                            //Put the date back together
+                                            $formattedDate = $monthName . " " . $birthDate[2] . ", " . $birthDate[0];
+                                        ?>
                                         <span class="label">Birth Date</span>
                                         <span class="detail">
-                                            <?php echo $client->client_birthdate; ?>
+                                            <?php echo $formattedDate; ?>
                                         </span>
                                     </li>
                                 </ul>

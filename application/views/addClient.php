@@ -126,9 +126,9 @@
                             </div><!--End Row-->
                         </div><!-- /.box-body -->
     
-                        <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" name="insert" value="Insert" />
-                            <input type="reset" class="btn btn-default" value="Reset" />
+                        <div class="box-footer form-buttons">
+                            <input type="submit" class="btn btn-primary client-primary" name="insert" value="Insert" />
+                            <input type="reset" class="btn btn-default secondary" value="Reset" />
                         </div>
                     </form>
                 </div>

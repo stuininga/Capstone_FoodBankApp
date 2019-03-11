@@ -14,7 +14,7 @@
                     <h3 class="box-title">Users List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>userListing" method="POST" id="searchList">
-                            <div class="input-group">
+                            <div class="input-group search-users">
                               <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                               <div class="input-group-btn">
                                 <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
@@ -56,9 +56,9 @@
                   </table>
                 </div><!-- /.box-body -->
                 <div class="row">
-                    <div class="col-xs-12 text-right">
-                        <div class="form-group">
-                            <a class="btn btn-primary button" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
+                    <div class="col-md-12 text-right">
+                        <div class="form-group form-buttons">
+                            <a class="btn user-primary" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
     </section>
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('ul.pagination li a').click(function (e) {
             e.preventDefault();            
@@ -78,4 +78,4 @@
             jQuery("#searchList").submit();
         });
     });
-</script>
+</script> -->

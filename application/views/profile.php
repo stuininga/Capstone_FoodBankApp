@@ -70,9 +70,9 @@ $role = $userInfo->role;
                                         </div>
                                     </div>
                                 </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <input type="submit" class="btn btn-primary" value="Submit" />
-                                    <input type="reset" class="btn btn-default" value="Reset" />
+                                <div class="box-footer form-buttons">
+                                    <input type="submit" class="btn btn-primary user-primary" value="Update" />
+                                    <input type="reset" class="btn btn-default secondary" value="Reset" />
                                 </div>
                             </form>
                         </div>
@@ -106,9 +106,9 @@ $role = $userInfo->role;
                                     </div>
                                 </div><!-- /.box-body -->
             
-                                <div class="box-footer">
-                                    <input type="submit" class="btn btn-primary" value="Submit" />
-                                    <input type="reset" class="btn btn-default" value="Reset" />
+                                <div class="box-footer form-buttons">
+                                    <input type="submit" class="btn btn-primary user-primary" value="Update" />
+                                    <input type="reset" class="btn btn-default secondary" value="Reset" />
                                 </div>
                             </form>
                         </div>                        
