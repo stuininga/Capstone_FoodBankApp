@@ -161,6 +161,9 @@
                 </div>
             </div>
             <div class="col-md-4">
+                <div class="form-buttons r-column">
+                    <a href="<?php echo base_url()?>searchClients" class="btn secondary"><i class="fas fa-arrow-left"></i> Back to Search</a>
+                </div>
                 <?php
                     $this->load->helper('form');
                     $error = $this->session->flashdata('error');

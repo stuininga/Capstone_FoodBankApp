@@ -90,5 +90,18 @@ class Client_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * This function is used to update the user information
+     * @param array $clientInfo : This is the client's updated information
+     * @param number $clientID : This is the client's ID
+     */
+    function editClient($clientInfo, $clientID)
+    {
+        $this->db->where('client_code', $clientID);
+        $this->db->update('lfb_clients', $clientInfo);
+        
+        return TRUE;
+    }
+
 }//End of class
 ?>
