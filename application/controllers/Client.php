@@ -178,14 +178,13 @@ class Client extends BaseController
         else {
             //Set pageTitle
             $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
-
+            $data['locationsRecord'] = $this->client_model->getLocations();
+            
             //VALIDATE
             $this->load->library('form_validation');
 
             //If the user has typed into the phone field check that they have typed a full phone number
             if(($this->input->post('phone-s1') != "") || ($this->input->post('phone-s2') != "") || ($this->input->post('phone-s3') != "")) {
-
-                echo "Phone inputted";
                 //Set Phone Rules
                 $this->form_validation->set_rules('phone-s1', 'Phone Area Code', 'trim|numeric|required|exact_length[3]');
                 $this->form_validation->set_rules('phone-s2', 'Phone Prefix', 'trim|numeric|required|exact_length[3]');
@@ -217,12 +216,12 @@ class Client extends BaseController
                 }  
                 //If they didn't search anything, continue displaying the "blank" version of the page
                 else {
-                    $this->loadViews("viewClients", $this->global, NULL);
+                    $this->loadViews("viewClients", $this->global, $data, NULL);
                 }   
             }
             //If they didn't press the button display the "blank" version of the page
             else {
-                $this->loadViews("viewClients", $this->global, NULL);
+                $this->loadViews("viewClients", $this->global, $data, NULL);
             }
         }//End of check if user is logged in
     }//End of searchClients Function
@@ -261,35 +260,34 @@ class Client extends BaseController
     /**
      * This function is used to load one client for viewing
      */
-    function editSingleClientForm($clientID) 
+    function editSingleClientForm() 
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
         }
         else
         {
-            if($userId == null)
+            //GET the ClientID from the URL
+            $clientID = $_GET['id'];
+
+            //If there's no user ID to display, redirect
+            if($clientID == "")
             {
-                redirect('userListing');
+                //redirect('searchClients');
+                echo $clientID . " : ID not found";
             }
             
-            $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($userId);
+            //Display the edit form and client info!
+            $data['locationsRecord'] = $this->client_model->getLocations();
+            $data['clientInfo'] = $this->client_model->getClient($clientID);
+            $data['locationsRecord'] = $this->client_model->getLocations();
             
-            $this->global['pageTitle'] = 'Leduc Food Bank | Edit User';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->global['pageTitle'] = 'Leduc Food Bank | View Client: ' . $clientID;
+            
+            $this->loadViews("editClient", $this->global, $data, NULL);
         }
-        //GET the ClientID from the URL
-        $clientID = $_GET['id'];
-
-        //Set Page Title
-        $this->global['pageTitle'] = 'Leduc Food Bank | View Client: ' . $clientID;
-        $data['clientInfo'] = $this->client_model->getClient($clientID);
-        $data['locationsRecord'] = $this->client_model->getLocations();
-
-        $this->loadViews("editClient", $this->global, $data, NULL);
     }//End of editSingleClientForm
 
     /**
@@ -303,7 +301,8 @@ class Client extends BaseController
         }
         else 
         {
-           
+            //GET the ClientID from the URL
+            $clientID = $_GET['id'];
 
             //VALIDATE
             $this->load->library('form_validation');
@@ -336,7 +335,7 @@ class Client extends BaseController
             if($this->form_validation->run() == FALSE)
             {
                 //If it is the first time, load the form
-                $this->editSingleUser();
+                $this->editSingleClientForm();
             }
             else {
                 //If the validation has passed, get the values
@@ -375,24 +374,23 @@ class Client extends BaseController
 
                 if ($birthDate == "") {
                     $this->session->set_flashdata('error', 'Submitted date is invalid.');
-                    //redirect('addNewClient'); 
-                    $this->addNewClientForm();     
+                    $this->editSingleClientForm();     
                 }
                 else {
                     //Store all the info from the form in an array
-                    $clientInfo = array('first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID, 'home_phone'=>$homePhone, 'cell_phone'=>$cellPhone, 'client_birthdate'=>$birthDate);
+                    $clientInfo = array('client_code'=>$clientID, 'first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID, 'home_phone'=>$homePhone, 'cell_phone'=>$cellPhone, 'client_birthdate'=>$birthDate);
 
                     //Pass the info from the form to the Client Model
-                    $result = $this->client_model->addNewClient($clientInfo);
+                    $result = $this->client_model->editClient($clientInfo, $clientID);
 
                     //Check if anything was loaded to the database
                     if($result > 0)
                     {
                         //The client was inserted, display success
-                        $this->session->set_flashdata('success', 'New Client was added successfully' );
+                        $this->session->set_flashdata('success', 'Client was edited successfully' );
 
-                        //Reload the page
-                        redirect('addNewClient');               
+                        //Reload, but keep the form populated
+                        $this->editSingleClientForm();               
                     }
                     else
                     {
@@ -402,12 +400,6 @@ class Client extends BaseController
                     }
                 }//End of check if date is valid
             }//End of check if user's first time on page
-
-
-
-
-
-
         }//End of check if user is logged in
     }//End of editSingleClient
 
