@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <select class="form-control required" id="birth-month" name="birth-month">
                                         <option value="">Month</option>
                                         <?php for($month=1; $month<=12; $month++): ?>
@@ -107,7 +107,7 @@
                                         <?php endfor; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <select class="form-control required" id="birth-day" name="birth-day">
                                         <option value="">Day</option>
                                         <?php for($date=1; $date<=31; $date++): ?>
@@ -115,13 +115,19 @@
                                         <?php endfor; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <select class="form-control required" id="birth-year" name="birth-year">
                                         <option value="">Year</option>
                                         <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
                                             <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                         <?php endfor; ?>
                                     </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="ccode">Age</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('age') ?>" id="age" name="age" disabled />
+                                    </div>
                                 </div>
                             </div><!--End Row-->
                         </div><!-- /.box-body -->

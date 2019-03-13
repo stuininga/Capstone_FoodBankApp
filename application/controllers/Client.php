@@ -19,6 +19,7 @@ class Client extends BaseController
     {
         parent::__construct();
         $this->load->model('client_model');
+        $this->load->library('client_form');
         $this->isLoggedIn();   
     }
 
@@ -65,33 +66,8 @@ class Client extends BaseController
         }
         else
         {
-            //VALIDATE
-            $this->load->library('form_validation');
-            
-            //Set the rules for Validation
-            $this->form_validation->set_rules('fname','First Name','trim|required|max_length[70]');
-            $this->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
-            $this->form_validation->set_rules('location', 'Location', 'required');
-
-            //Phone Validation
-            $this->form_validation->set_rules('home-phone1', 'Main Phone Area Code', 'trim|required|numeric|exact_length[3]');
-            $this->form_validation->set_rules('home-phone2', 'Main Phone Prefix', 'trim|required|numeric|exact_length[3]');
-            $this->form_validation->set_rules('home-phone3', 'Main Phone Suffix', 'trim|required|numeric|exact_length[4]');
-
-            //If the user has typed into the cell phone field, validate it 
-            if(($this->input->post('cell-phone1') != "") || ($this->input->post('cell-phone2') != "") || ($this->input->post('cell-phone3') != "")) {
-
-                //Set Cell Phone Rules
-                $this->form_validation->set_rules('cell-phone1', 'Cell Phone Area Code', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('cell-phone2', 'Cell Phone Prefix', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('cell-phone3', 'Cell Phone Suffix', 'trim|numeric|required|exact_length[4]');
-            }
-
-            //Birth Date Validation
-            $this->form_validation->set_rules('birth-day', 'Birth Day', 'required');
-            $this->form_validation->set_rules('birth-month', 'Birth Month', 'required');
-            $this->form_validation->set_rules('birth-year', 'Birth Year', 'required');
-
+            //Set the validation rules
+            $this->client_form->setValidationRules();
 
             //Check if this is the user's first time on the page
             if($this->form_validation->run() == FALSE)
@@ -102,50 +78,16 @@ class Client extends BaseController
             else
             {
                 //If the validation has passed, get the values
-                $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname'))));
-                $locationID = $this->input->post('location');
-                $homePhone1 = ucwords($this->security->xss_clean($this->input->post('home-phone1')));
-                $homePhone2 = ucwords($this->security->xss_clean($this->input->post('home-phone2')));
-                $homePhone3 = ucwords($this->security->xss_clean($this->input->post('home-phone3')));
-                $cellPhone1 = ucwords($this->security->xss_clean($this->input->post('cell-phone1')));
-                $cellPhone2 = ucwords($this->security->xss_clean($this->input->post('cell-phone2')));
-                $cellPhone3 = ucwords($this->security->xss_clean($this->input->post('cell-phone3')));
-                $birthDay = $this->input->post('birth-day');
-                $birthMonth = $this->input->post('birth-month');
-                $birthYear = $this->input->post('birth-year');
+                $formData = $this->client_form->getFormValues();
 
-                //Concatenate Phone Number together
-                $homePhone = $homePhone1 . $homePhone2 . $homePhone3;
-
-                //Concatenate Cell Phone Number together
-                $cellPhone = $cellPhone1 . $cellPhone2 . $cellPhone3;
-
-                //Check that the date the user submitted is valid, if not, don't insert
-                if (!(checkdate($birthMonth, $birthDay, $birthYear))) {
-                    //Bad Date, do not insert
-                    $birthDay = "";
-                    $birthMonth = "";
-                    $birthYear = "";
-                    $birthDate = "";
-                }
-                else {
-                    //Good Date, prepare to insert
-                    $birthDate = "$birthYear-$birthMonth-$birthDay";
-                    $birthDate = date("Y-m-d", strtotime($birthDate));
-                }
-                
-                if ($birthDate == "") {
+                //Check if the date is blank due to an error
+                if ($formData['client_birthdate'] == "") {
                     $this->session->set_flashdata('error', 'Submitted date is invalid.');
-                    //redirect('addNewClient'); 
                     $this->addNewClientForm();     
                 }
                 else {
-                    //Store all the info from the form in an array
-                    $clientInfo = array('first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID, 'home_phone'=>$homePhone, 'cell_phone'=>$cellPhone, 'client_birthdate'=>$birthDate);
-                
                     //Pass the info from the form to the Client Model
-                    $result = $this->client_model->addNewClient($clientInfo);
+                    $result = $this->client_model->addNewClient($formData);
 
                     //Check if anything was loaded to the database
                     if($result > 0)
@@ -257,6 +199,7 @@ class Client extends BaseController
         }//End of check if user is logged in
     }//End of searchedClients
 
+
     /**
      * This function is used to load one client for viewing
      */
@@ -274,8 +217,7 @@ class Client extends BaseController
             //If there's no user ID to display, redirect
             if($clientID == "")
             {
-                //redirect('searchClients');
-                echo $clientID . " : ID not found";
+                redirect('searchClients');
             }
             
             //Display the edit form and client info!
@@ -303,34 +245,11 @@ class Client extends BaseController
         {
             //GET the ClientID from the URL
             $clientID = $_GET['id'];
-
-            //VALIDATE
-            $this->load->library('form_validation');
         
             //Set the rules for Validation
-            $this->form_validation->set_rules('fname','First Name','trim|required|max_length[70]');
-            $this->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
-            $this->form_validation->set_rules('location', 'Location', 'required');
+            $this->client_form->setValidationRules();
 
-            //Phone Validation
-            $this->form_validation->set_rules('home-phone1', 'Main Phone Area Code', 'trim|required|numeric|exact_length[3]');
-            $this->form_validation->set_rules('home-phone2', 'Main Phone Prefix', 'trim|required|numeric|exact_length[3]');
-            $this->form_validation->set_rules('home-phone3', 'Main Phone Suffix', 'trim|required|numeric|exact_length[4]');
-
-            //If the user has typed into the cell phone field, validate it 
-            if(($this->input->post('cell-phone1') != "") || ($this->input->post('cell-phone2') != "") || ($this->input->post('cell-phone3') != "")) {
-
-                //Set Cell Phone Rules
-                $this->form_validation->set_rules('cell-phone1', 'Cell Phone Area Code', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('cell-phone2', 'Cell Phone Prefix', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('cell-phone3', 'Cell Phone Suffix', 'trim|numeric|required|exact_length[4]');
-            }
-
-            //Birth Date Validation
-            $this->form_validation->set_rules('birth-day', 'Birth Day', 'required');
-            $this->form_validation->set_rules('birth-month', 'Birth Month', 'required');
-            $this->form_validation->set_rules('birth-year', 'Birth Year', 'required');
-
+            
             //Check if this is the user's first time on the page
             if($this->form_validation->run() == FALSE)
             {
@@ -339,49 +258,16 @@ class Client extends BaseController
             }
             else {
                 //If the validation has passed, get the values
-                $firstName = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $lastName = ucwords(strtolower($this->security->xss_clean($this->input->post('lname'))));
-                $locationID = $this->input->post('location');
-                $homePhone1 = ucwords($this->security->xss_clean($this->input->post('home-phone1')));
-                $homePhone2 = ucwords($this->security->xss_clean($this->input->post('home-phone2')));
-                $homePhone3 = ucwords($this->security->xss_clean($this->input->post('home-phone3')));
-                $cellPhone1 = ucwords($this->security->xss_clean($this->input->post('cell-phone1')));
-                $cellPhone2 = ucwords($this->security->xss_clean($this->input->post('cell-phone2')));
-                $cellPhone3 = ucwords($this->security->xss_clean($this->input->post('cell-phone3')));
-                $birthDay = $this->input->post('birth-day');
-                $birthMonth = $this->input->post('birth-month');
-                $birthYear = $this->input->post('birth-year');
+                $formData = $this->client_form->getFormValues();
 
-                //Concatenate Phone Number together
-                $homePhone = $homePhone1 . $homePhone2 . $homePhone3;
-
-                //Concatenate Cell Phone Number together
-                $cellPhone = $cellPhone1 . $cellPhone2 . $cellPhone3;
-
-                //Check that the date the user submitted is valid, if not, don't insert
-                if (!(checkdate($birthMonth, $birthDay, $birthYear))) {
-                    //Bad Date, do not insert
-                    $birthDay = "";
-                    $birthMonth = "";
-                    $birthYear = "";
-                    $birthDate = "";
-                }
-                else {
-                    //Good Date, prepare to insert
-                    $birthDate = "$birthYear-$birthMonth-$birthDay";
-                    $birthDate = date("Y-m-d", strtotime($birthDate));
-                }
-
-                if ($birthDate == "") {
+                //Check if the date is blank due to an error
+                if ($formData['client_birthdate'] == "") {
                     $this->session->set_flashdata('error', 'Submitted date is invalid.');
-                    $this->editSingleClientForm();     
+                    $this->addNewClientForm();     
                 }
                 else {
-                    //Store all the info from the form in an array
-                    $clientInfo = array('client_code'=>$clientID, 'first_name'=>$firstName, 'last_name'=>$lastName, 'location_id' =>$locationID, 'home_phone'=>$homePhone, 'cell_phone'=>$cellPhone, 'client_birthdate'=>$birthDate);
-
                     //Pass the info from the form to the Client Model
-                    $result = $this->client_model->editClient($clientInfo, $clientID);
+                    $result = $this->client_model->editClient($formData, $clientID);
 
                     //Check if anything was loaded to the database
                     if($result > 0)
