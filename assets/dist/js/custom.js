@@ -13,10 +13,3 @@ dropdownToggle.addEventListener('click', function(){
         dropdown.classList.remove('open');
     }
 });
-
-    //Calculate age for field
-    var ageField = document.querySelector('#age');
-    var yearField = document.querySelector('#birth-year');
-    yearField.addEventListener('change', function(){
-        console.log("hello");
-    }); 

@@ -24,6 +24,7 @@ class Client_form {
     {
         $this->CI->form_validation->set_rules('fname','First Name','trim|required|max_length[70]');
         $this->CI->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
+        $this->CI->form_validation->set_rules('gender', 'Gender', 'required');
         $this->CI->form_validation->set_rules('location', 'Location', 'required');
 
         //Phone Validation
@@ -65,6 +66,7 @@ class Client_form {
         $birthDay = $this->CI->input->post('birth-day');
         $birthMonth = $this->CI->input->post('birth-month');
         $birthYear = $this->CI->input->post('birth-year');
+        $formData['gender'] = $this->CI->input->post('gender');
 
         //Concatenate Phone Number together
         $formData['home_phone'] = $homePhone1 . $homePhone2 . $homePhone3;
@@ -86,6 +88,15 @@ class Client_form {
         return $formData;
     }//End of getFormValues
 
+    /**
+     * This function is used to calculate the age of a client based on their birthdate
+     * @return number $age : The age of the client calculated based on today's date
+     */
+    public function getClientAge($birthDate)
+    {
+        $age = date_diff(date_create($birthDate), date_create('now'))->y;
+        return $age;
+    }//End of getClientAge
 
 
 }//End of class
