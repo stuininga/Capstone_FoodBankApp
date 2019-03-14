@@ -23,7 +23,7 @@
                             <form role="form" id="addClient" action="<?php echo base_url() ?>editClient?id=<?php echo $client->client_code; ?>" method="post" role="form">
                                 <div class="box-body">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="ccode">Client Code</label>
                                                 <input type="text" class="form-control" value="<?php echo set_value('ccode', $client->client_code) ?>" id="ccode" name="ccode" disabled />
@@ -31,16 +31,26 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">                                
+                                        <div class="col-md-5">                                
                                             <div class="form-group">
                                                 <label for="fname"><span class="need">*</span> First Name</label>
                                                 <input type="text" class="form-control required" value="<?php echo set_value('fname', $client->first_name); ?>" id="fname" name="fname" maxlength="70">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="fname"><span class="need">*</span> Last Name</label>
                                                 <input type="text" class="form-control required" value="<?php echo set_value('lname', $client->last_name); ?>" id="lname" name="lname" maxlength="70">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="gender"><span class="need">*</span> Gender</label>
+                                                <select class="form-control required" id="gender" name="gender">
+                                                    <option value="">Select</option>
+                                                    <option value="F" <?php if("F" == set_value('gender', $client->gender)) {echo "selected=selected";} ?>>F</option>
+                                                    <option value="M" <?php if("M" == set_value('gender', $client->gender)) {echo "selected=selected";} ?>>M</option>
+                                                </select> 
                                             </div>
                                         </div>
                                     </div><!--End Row-->
@@ -116,8 +126,11 @@
                                         </div><!--End of inner box-body-->
                                     </div><!--End Row-->   
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-9">
                                             <label for="birthdate"><span class="need">*</span> Birth Date</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="ccode">Age</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -125,7 +138,7 @@
                                             //Split birthdate to fill in the form
                                             $birthDate = explode('-', $client->client_birthdate);
                                         ?>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <select class="form-control required" id="birth-month" name="birth-month">
                                                 <option value="">Month</option>
                                                 <?php for($month=1; $month<=12; $month++): ?>
@@ -133,7 +146,7 @@
                                                 <?php endfor; ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <select class="form-control required" id="birth-day" name="birth-day">
                                                 <option value="">Day</option>
                                                 <?php for($date=1; $date<=31; $date++): ?>
@@ -141,13 +154,18 @@
                                                 <?php endfor; ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <select class="form-control required" id="birth-year" name="birth-year">
                                                 <option value="">Year</option>
                                                 <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
                                                     <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year', $birthDate[0])) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                                 <?php endfor; ?>
                                             </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" value="<?php echo set_value('age', $age) ?>" id="age" name="age" disabled />
+                                            </div>
                                         </div>
                                     </div><!--End Row-->
                                 </div><!-- /.box-body -->

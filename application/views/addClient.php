@@ -23,21 +23,35 @@
                     <form role="form" id="addClient" action="<?php echo base_url() ?>addNewClient" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
+                                <div class="col-md-4">                                
                                     <div class="form-group">
                                         <label for="fname"><span class="need">*</span> First Name</label>
                                         <input type="text" class="form-control required" value="<?php echo set_value('fname'); ?>" id="fname" name="fname" maxlength="70">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="fname"><span class="need">*</span> Last Name</label>
                                         <input type="text" class="form-control required" value="<?php echo set_value('lname'); ?>" id="lname" name="lname" maxlength="70">
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="gender"><span class="need">*</span> Gender</label>
+                                        <select class="form-control required" id="gender" name="gender">
+                                            <option value="">Select</option>
+                                            <option value="F" <?php if("F" == set_value('gender')) {echo "selected=selected";} ?>>F</option>
+                                            <option value="M" <?php if("M" == set_value('gender')) {echo "selected=selected";} ?>>M</option>
+                                        </select> 
+                                    </div>
+                                </div>
                             </div><!--End Row-->
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label for="address"><span class="need">*</span> Address</label>
+                                    <input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" maxlength="100">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="location"><span class="need">*</span> Location</label>
                                         <select class="form-control required" id="location" name="location">
@@ -47,6 +61,24 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="province"><span class="need">*</span> Province</label>
+                                    <select class="form-control required" id="province" name="province">
+                                        <option value="AB" <?php if("AB" == set_value('province')) {echo "selected=selected";} ?>>AB</option>
+                                        <option value="BC" <?php if("BC" == set_value('province')) {echo "selected=selected";} ?>>BC</option>
+                                        <option value="SK" <?php if("SK" == set_value('province')) {echo "selected=selected";} ?>>SK</option>
+                                        <option value="MB" <?php if("MB" == set_value('province')) {echo "selected=selected";} ?>>MB</option>
+                                        <option value="ON" <?php if("ON" == set_value('province')) {echo "selected=selected";} ?>>ON</option>
+                                        <option value="QC" <?php if("QC" == set_value('province')) {echo "selected=selected";} ?>>QC</option>
+                                        <option value="NL" <?php if("NL" == set_value('province')) {echo "selected=selected";} ?>>NL</option>
+                                        <option value="NB" <?php if("NB" == set_value('province')) {echo "selected=selected";} ?>>NB</option>
+                                        <option value="NT" <?php if("NT" == set_value('province')) {echo "selected=selected";} ?>>NT</option>
+                                        <option value="NS" <?php if("NS" == set_value('province')) {echo "selected=selected";} ?>>NS</option>
+                                        <option value="NU" <?php if("NU" == set_value('province')) {echo "selected=selected";} ?>>NU</option>
+                                        <option value="PE" <?php if("PE" == set_value('province')) {echo "selected=selected";} ?>>PE</option>
+                                        <option value="YT" <?php if("YT" == set_value('province')) {echo "selected=selected";} ?>>YT</option>
+                                    </select> 
                                 </div>
                             </div><!--End Row-->
 
@@ -122,12 +154,6 @@
                                             <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                         <?php endfor; ?>
                                     </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="ccode">Age</label>
-                                        <input type="text" class="form-control" value="<?php echo set_value('age') ?>" id="age" name="age" disabled />
-                                    </div>
                                 </div>
                             </div><!--End Row-->
                         </div><!-- /.box-body -->

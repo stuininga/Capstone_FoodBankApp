@@ -224,7 +224,14 @@ class Client extends BaseController
             $data['locationsRecord'] = $this->client_model->getLocations();
             $data['clientInfo'] = $this->client_model->getClient($clientID);
             $data['locationsRecord'] = $this->client_model->getLocations();
-            
+
+            //Get the birth date from the array
+            foreach($data['clientInfo'] as $client){
+                $birthDate = $client->client_birthdate;
+            }
+
+            //Calculate age
+            $data['age'] = $this->client_form->getClientAge($birthDate);
             
             $this->global['pageTitle'] = 'Leduc Food Bank | View Client: ' . $clientID;
             

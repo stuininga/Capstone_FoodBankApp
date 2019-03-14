@@ -59,7 +59,7 @@ class Client_model extends CI_Model
      */
     function getClientInfoAndLocations()
     {
-        $this->db->select('Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.cell_phone, Location.location_name');
+        $this->db->select('Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.cell_phone, Client.gender, Location.location_name');
         $this->db->from('lfb_clients as Client');
         $this->db->join('lfb_clients_location as Location','Client.location_id = Location.location_id');
         $query = $this->db->get();
@@ -85,7 +85,7 @@ class Client_model extends CI_Model
      */
     function getClient($clientID)
     {
-        $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
+        $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.gender, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
         $query = $this->db->query($searchQuery);
         return $query->result();
     }
