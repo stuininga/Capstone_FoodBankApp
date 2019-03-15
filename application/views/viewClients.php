@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="location-s">Location</label>
+                                        <label for="location-s">Region</label>
                                         <select class="form-control" id="location-s" name="location-s">
                                             <option value="">Select Region</option>
                                             <?php foreach ($locationsRecord as $location): ?>

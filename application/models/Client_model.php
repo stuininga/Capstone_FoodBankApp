@@ -16,7 +16,7 @@ class Client_model extends CI_Model
      */
     function getClientInfo()
     {
-        $this->db->select('first_name, last_name, client_code, location_id, client_birthdate, home_phone, cell_phone');
+        $this->db->select('client_code, first_name, last_name, address, city, province, postal_code, location_id, legal_land_desc, location_type, address_proof, landlord, client_birthdate, home_phone, cell_phone');
         $this->db->from('lfb_clients');
         $query = $this->db->get();
         
@@ -54,7 +54,7 @@ class Client_model extends CI_Model
     }
 
     /**
-     * This function is used to get the location names with all the client info from lfb_clients_locations joined to lfb_clients
+     * This function is used to get the location names with the display client info from lfb_clients_locations joined to lfb_clients
      * @return array $result : This is result of the query
      */
     function getClientInfoAndLocations()
@@ -85,7 +85,7 @@ class Client_model extends CI_Model
      */
     function getClient($clientID)
     {
-        $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Client.gender, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
+        $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.address, Client.city, Client.postal_code, Client.province, Client.location_id, Client.legal_land_desc, Client.location_type, Client.address_proof, Client.landlord, Client.client_birthdate, Client.home_phone, Client.gender, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
         $query = $this->db->query($searchQuery);
         return $query->result();
     }
