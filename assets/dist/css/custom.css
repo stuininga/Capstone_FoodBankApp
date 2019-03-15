@@ -384,6 +384,16 @@ span.need {
 .form-buttons.r-column a {
     width: 100%;
 }
+.no-label {
+    margin-top: 17px;
+}
+.form-group.checkboxes {
+    margin: 20px 0;
+}
+.main-label {
+    margin-right: 20px;
+    font-weight: bold;
+}
 
 
 @media only screen and (max-width: 1064px) {

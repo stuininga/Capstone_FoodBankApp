@@ -55,9 +55,43 @@
                                         </div>
                                     </div><!--End Row-->
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-5">
+                                            <label for="address"><span class="need">*</span> Address</label>
+                                            <input type="text" class="form-control required" value="<?php echo set_value('address', $client->address); ?>" id="address" name="address" maxlength="150">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="city"><span class="need">*</span> City</label>
+                                            <input type="text" class="form-control required" value="<?php echo set_value('city', $client->city); ?>" id="city" name="city" max-length="70">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="province"><span class="need">*</span> Province</label>
+                                            <select class="form-control required" id="province" name="province">
+                                                <option value="AB" <?php if("AB" == set_value('province', $client->province)) {echo "selected=selected";} ?>>AB</option>
+                                                <option value="BC" <?php if("BC" == set_value('province', $client->province)) {echo "selected=selected";} ?>>BC</option>
+                                                <option value="SK" <?php if("SK" == set_value('province', $client->province)) {echo "selected=selected";} ?>>SK</option>
+                                                <option value="MB" <?php if("MB" == set_value('province', $client->province)) {echo "selected=selected";} ?>>MB</option>
+                                                <option value="ON" <?php if("ON" == set_value('province', $client->province)) {echo "selected=selected";} ?>>ON</option>
+                                                <option value="QC" <?php if("QC" == set_value('province', $client->province)) {echo "selected=selected";} ?>>QC</option>
+                                                <option value="NL" <?php if("NL" == set_value('province', $client->province)) {echo "selected=selected";} ?>>NL</option>
+                                                <option value="NB" <?php if("NB" == set_value('province', $client->province)) {echo "selected=selected";} ?>>NB</option>
+                                                <option value="NT" <?php if("NT" == set_value('province', $client->province)) {echo "selected=selected";} ?>>NT</option>
+                                                <option value="NS" <?php if("NS" == set_value('province', $client->province)) {echo "selected=selected";} ?>>NS</option>
+                                                <option value="NU" <?php if("NU" == set_value('province', $client->province)) {echo "selected=selected";} ?>>NU</option>
+                                                <option value="PE" <?php if("PE" == set_value('province', $client->province)) {echo "selected=selected";} ?>>PE</option>
+                                                <option value="YT" <?php if("YT" == set_value('province', $client->province)) {echo "selected=selected";} ?>>YT</option>
+                                            </select> 
+                                        </div>
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="location"><span class="need">*</span> Location</label>
+                                                <label for="postal-code"><span class="need">*</span> Postal Code</label>
+                                                <input type="text" class="form-control required" value="<?php echo set_value('postal-code', $client->postal_code); ?>" id="postal-code" name="postal-code" max-length="7">
+                                            </div>
+                                        </div>
+                                    </div><!--End Row-->
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="location"><span class="need">*</span> Region</label>
                                                 <select class="form-control required" id="location" name="location">
                                                     <option value="">Select Region</option>
                                                     <?php foreach ($locationsRecord as $location): ?>
@@ -66,8 +100,25 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <label for="ll-desc">Legal Land Desc.</label>
+                                            <input type="text" class="form-control" value="<?php echo set_value('ll-desc', $client->legal_land_desc); ?>" id="ll-desc" name="ll-desc" max-length="100">
+                                        </div>
                                     </div><!--End Row-->
-
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="proof-a">Proof of Address</label>
+                                                <input type="text" class="form-control" value="<?php echo set_value('proof-a', $client->address_proof); ?>" id="proof-a" name="proof-a" max-length="100">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="landlord">Landlord</label>
+                                                <input type="text" class="form-control" value="<?php echo set_value('landlord', $client->landlord); ?>" id="landlord" name="landlord" max-length="70">
+                                            </div>
+                                        </div>
+                                    </div><!--End Row-->
                                     <!--Phone Numbers-->
                                     <div class="row">
                                         <div class="col-md-6 box-body">

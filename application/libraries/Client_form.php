@@ -26,6 +26,14 @@ class Client_form {
         $this->CI->form_validation->set_rules('lname','Last Name','trim|required|max_length[70]');
         $this->CI->form_validation->set_rules('gender', 'Gender', 'required');
         $this->CI->form_validation->set_rules('location', 'Location', 'required');
+        $this->CI->form_validation->set_rules('address', 'Address', 'trim|required|max_length[150]');
+        $this->CI->form_validation->set_rules('city', 'City', 'trim|required|max_length[70]');
+        $this->CI->form_validation->set_rules('province', 'Province', 'required');
+        $this->CI->form_validation->set_rules('postal-code', 'Postal Code', 'required|exact_length[7]');
+        $this->CI->form_validation->set_rules('ll-desc', 'Legal Land Description', 'trim|max_length[100]');
+        $this->CI->form_validation->set_rules('l-type', 'Location Type', 'required');
+        $this->CI->form_validation->set_rules('proof-a', 'Proof of Address', 'max_length[100]');
+        $this->CI->form_validation->set_rules('landlord', 'Landlord', 'max_length[70]');
 
         //Phone Validation
         $this->CI->form_validation->set_rules('home-phone1', 'Main Phone Area Code', 'trim|required|numeric|exact_length[3]');
@@ -44,7 +52,6 @@ class Client_form {
         $this->CI->form_validation->set_rules('birth-day', 'Birth Day', 'required');
         $this->CI->form_validation->set_rules('birth-month', 'Birth Month', 'required');
         $this->CI->form_validation->set_rules('birth-year', 'Birth Year', 'required');
-
     }//End of setValidationRules
 
 
@@ -67,6 +74,14 @@ class Client_form {
         $birthMonth = $this->CI->input->post('birth-month');
         $birthYear = $this->CI->input->post('birth-year');
         $formData['gender'] = $this->CI->input->post('gender');
+        $formData['address'] = $this->CI->input->post('address');
+        $formData['city'] = $this->CI->input->post('city');
+        $formData['province'] = $this->CI->input->post('province');
+        $formData['postal_code'] = $this->CI->input->post('postal-code');
+        $formData['legal_land_desc'] = $this->CI->input->post('ll-desc');
+        $formData['location_type'] = $this->CI->input->post('l-type');
+        $formData['address_proof'] = $this->CI->input->post('proof-a');
+        $formData['landlord'] = $this->CI->input->post('landlord');
 
         //Concatenate Phone Number together
         $formData['home_phone'] = $homePhone1 . $homePhone2 . $homePhone3;

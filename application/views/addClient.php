@@ -47,20 +47,13 @@
                                 </div>
                             </div><!--End Row-->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <label for="address"><span class="need">*</span> Address</label>
-                                    <input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" maxlength="100">
+                                    <input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" maxlength="150">
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="location"><span class="need">*</span> Location</label>
-                                        <select class="form-control required" id="location" name="location">
-                                            <option value="">Select Region</option>
-                                            <?php foreach ($locationsRecord as $location): ?>
-                                                    <option value="<?php echo $location->location_id ?>" <?php if($location->location_id == set_value('location')) {echo "selected=selected";} ?>><?php echo $location->location_name ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
+                                <div class="col-md-3">
+                                    <label for="city"><span class="need">*</span> City</label>
+                                    <input type="text" class="form-control required" value="<?php echo set_value('city'); ?>" id="city" name="city" max-length="70">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="province"><span class="need">*</span> Province</label>
@@ -80,8 +73,52 @@
                                         <option value="YT" <?php if("YT" == set_value('province')) {echo "selected=selected";} ?>>YT</option>
                                     </select> 
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="postal-code"><span class="need">*</span> Postal Code</label>
+                                        <input type="text" class="form-control required" value="<?php echo set_value('postal-code'); ?>" id="postal-code" name="postal-code" max-length="7">
+                                    </div>
+                                </div>
                             </div><!--End Row-->
-
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="location"><span class="need">*</span> Region</label>
+                                        <select class="form-control required" id="location" name="location">
+                                            <option value="">Select Region</option>
+                                            <?php foreach ($locationsRecord as $location): ?>
+                                                    <option value="<?php echo $location->location_id ?>" <?php if($location->location_id == set_value('location')) {echo "selected=selected";} ?>><?php echo $location->location_name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ll-desc">Legal Land Desc.</label>
+                                    <input type="text" class="form-control" value="<?php echo set_value('ll-desc'); ?>" id="ll-desc" name="ll-desc" max-length="100">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="l-type"><span class="need">*</span> Location Type</label>
+                                    <select class="form-control required" id="l-type" name="l-type">
+                                        <option value="">Select...</option>
+                                        <option value="urban" <?php if("urban" == set_value('l-type')) {echo "selected=selected";} ?>>Urban</option>
+                                        <option value="rural" <?php if("rural" == set_value('l-type')) {echo "selected=selected";} ?>>Rural</option>
+                                    </select>  
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="proof-a">Proof of Address</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('proof-a'); ?>" id="proof-a" name="proof-a" max-length="100">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="landlord">Landlord</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('landlord'); ?>" id="landlord" name="landlord" max-length="70">
+                                    </div>
+                                </div>
+                            </div><!--End Row-->
                             <!--Phone Numbers-->
                             <div class="row">
                                 <div class="col-md-6 box-body">
@@ -132,12 +169,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <select class="form-control required" id="birth-month" name="birth-month">
-                                        <option value="">Month</option>
-                                        <?php for($month=1; $month<=12; $month++): ?>
-                                            <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
-                                        <?php endfor; ?>
-                                    </select>
+                                    <div class="form-group">
+                                        <select class="form-control required" id="birth-month" name="birth-month">
+                                            <option value="">Month</option>
+                                            <?php for($month=1; $month<=12; $month++): ?>
+                                                <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <select class="form-control required" id="birth-day" name="birth-day">
@@ -152,6 +191,60 @@
                                         <option value="">Year</option>
                                         <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
                                             <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group checkboxes">
+                                        <label for="s-diet" class="main-label">Special Diet</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="gluten-f" value="gluten-f">
+                                            <label class="form-check-label" for="gluten-f">Gluten Free</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lactose-i" value="lactose-i">
+                                            <label class="form-check-label" for="lactose-i">Lactose Intolerant</label>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="famv">FAMV</label>
+                                        <select class="form-control" id="famv" name="famv">
+                                            <option value="">Select...</option>
+                                            <option value="suspected" <?php if("1" == set_value('famv')) {echo "selected=selected";} ?>>Suspected</option>
+                                            <option value="2" <?php if("2" == set_value('famv')) {echo "selected=selected";} ?>>2</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="famv-month">FAMV Date</label>
+                                    <select class="form-control" id="famv-month" name="famv-month">
+                                        <option value="">Month</option>
+                                        <?php for($month=1; $month<=12; $month++): ?>
+                                            <option value="<?php echo $month; ?>" <?php if($month == set_value('famv-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="famv-day" class="no-label"></label>
+                                    <select class="form-control" id="famv-day" name="famv-day">
+                                        <option value="">Day</option>
+                                        <?php for($date=1; $date<=31; $date++): ?>
+                                            <option value="<?php echo $date ?>" <?php if($date == set_value('famv-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="famv-year" class="no-label"></label>
+                                    <select class="form-control" id="famv-year" name="famv-year">
+                                        <option value="">Year</option>
+                                        <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
+                                            <option value="<?php echo $year; ?>" <?php if($year == set_value('famv-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                         <?php endfor; ?>
                                     </select>
                                 </div>
