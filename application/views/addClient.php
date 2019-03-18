@@ -200,23 +200,23 @@
                                     <div class="form-group checkboxes">
                                         <label for="s-diet" class="main-label">Special Diet</label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="gluten-f" value="gluten-f">
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="gluten-f" value="gluten-f" <?php echo set_checkbox('s-diet[]', 'gluten-f', true); ?>>
                                             <label class="form-check-label" for="gluten-f">Gluten Free</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="lactose-i" value="lactose-i">
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="lactose-i" value="lactose-i" <?php echo set_checkbox('s-diet[]', 'lactose-i', true); ?>>
                                             <label class="form-check-label" for="lactose-i">Lactose Intolerant</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="nut-free" value="nut-free">
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="nut-free" value="nut-free" <?php echo set_checkbox('s-diet[]', 'nut-free', true); ?>>
                                             <label class="form-check-label" for="nut-free">Nut free</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="vegetarian" value="vegetarian">
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegetarian" value="vegetarian" <?php echo set_checkbox('s-diet[]', 'vegetarian', true); ?>>
                                             <label class="form-check-label" for="vegetarian">Vegetarian</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="vegan" value="vegan">
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegan" value="vegan" <?php echo set_checkbox('s-diet[]', 'vegan', true); ?>>
                                             <label class="form-check-label" for="vegan">Vegan</label>
                                         </div> 
                                     </div>
@@ -228,7 +228,7 @@
                                         <label for="famv">FAMV</label>
                                         <select class="form-control" id="famv" name="famv">
                                             <option value="">Select...</option>
-                                            <option value="suspected" <?php if("1" == set_value('famv')) {echo "selected=selected";} ?>>Suspected</option>
+                                            <option value="suspected" <?php if("suspected" == set_value('famv')) {echo "selected=selected";} ?>>Suspected</option>
                                             <option value="2" <?php if("2" == set_value('famv')) {echo "selected=selected";} ?>>2</option>
                                         </select> 
                                     </div>
