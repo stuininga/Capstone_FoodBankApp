@@ -1,11 +1,22 @@
+<!-- Bootstrap CDNm -->
+<link href="<?php echo base_url(); ?>assets/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Theme style -->
+<link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<!-- Custom CSS File-->
+<link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Daily Rec Report
+        <i class="fas fa-file"></i>  Daily Rec Report
         <small>Daily Report Work in Progress</small>
       </h1>
     </section>
+    <div class="client-buttons">
+                  
+        <?php echo '<a href=" '.base_url().'reports/viewDailyReportPDF/' .' ">View in PDF</a> ';?>
+
+    </div> 
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -26,24 +37,7 @@
                   <?php endforeach; ?>
                   <?php endif; ?>
                 </table>
-                <div class="client-buttons">
-                  
-                    <?php echo '<a href=" '.base_url().'reports/viewDailyReportPDF/' .' ">View in PDF</a> ';?>
-
-                </div> 
             </div>
         </div>
     </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery('ul.pagination li a').click(function (e) {
-            e.preventDefault();            
-            var link = jQuery(this).get(0).href;            
-            var value = link.substring(link.lastIndexOf('/') + 1);
-            jQuery("#searchList").attr("action", baseURL + "userListing/" + value);
-            jQuery("#searchList").submit();
-        });
-    });
-</script>

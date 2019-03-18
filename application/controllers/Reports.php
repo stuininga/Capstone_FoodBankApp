@@ -106,7 +106,7 @@ class Reports extends BaseController
     function viewDailyReportPDF()
     {
         
-        echo "test PDF ";
+        // echo "test PDF ";
 
         // $html_content = '<h3>Convert to PDF</h3>';
             
@@ -114,24 +114,27 @@ class Reports extends BaseController
         //     $this->pdf->render();
         //     $this->pdf->stream();
 
-        if($this->uri->segment(3)) 
-        {
-            $report_id = $this->uri->segment(3);
-            $data['reportPDF'] = $this->reports_model->getDailyReport();
+       
+        
+            
+            $data['dailyReport'] = $this->reports_model->getDailyReport();
+            $this->global['pageTitle'] = 'Leduc Food Bank | Daily Report';
             // $this->loadViews("viewClients", $data);
             // $html_content = ''.$client_code.'<h3 align="center">Convert to PDF</h3>';
             // $html_content .= $this->client_model->getClientInfoTest($client_code);
             // $html_content = $this->output->get_output();
             // $html = ob_get_clean();
             // $pdf = new DOMPDF();
-            $html_content = $this->load->view('viewDailyReport',$data, TRUE);
+            $html_content = $this->load->view('viewDailyReport', $data, TRUE);
             $this->pdf->loadHtml($html_content);
             $this->pdf->render();
             // $this->pdf->stream("".$client_code".pdf", array("Attachment"=>0));
             // $this->pdf->stream("test.pdf", array("Attachment"=>1));
-            $this->pdf->stream($report_id, array("Attachment"=>0));
+            $this->pdf->stream("Daily.pdf", array("Attachment"=>0));
             // $this->pdf->stream();
-        }
+
+            // print_r($html_content);
+        
 
 
     }
@@ -155,7 +158,6 @@ class Reports extends BaseController
             $data['dailyReport'] = $this->reports_model->getDailyReport();
             
             $this->global['pageTitle'] = 'Leduc Food Bank | Daily Report';
-
             $this->loadViews("viewDailyReport", $this->global, $data, NULL);
         }
 

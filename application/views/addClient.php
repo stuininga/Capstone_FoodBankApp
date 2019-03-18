@@ -207,6 +207,18 @@
                                             <input class="form-check-input" type="checkbox" id="lactose-i" value="lactose-i">
                                             <label class="form-check-label" for="lactose-i">Lactose Intolerant</label>
                                         </div> 
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="nut-free" value="nut-free">
+                                            <label class="form-check-label" for="nut-free">Nut free</label>
+                                        </div> 
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="vegetarian" value="vegetarian">
+                                            <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                                        </div> 
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="vegan" value="vegan">
+                                            <label class="form-check-label" for="vegan">Vegan</label>
+                                        </div> 
                                     </div>
                                 </div>
                             </div><!--End Row-->

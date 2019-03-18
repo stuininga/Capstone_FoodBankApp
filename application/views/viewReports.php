@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> All Reports
-        <small>Add, Edit, Delete</small>
+        <i class="fas fa-file"></i>  All Reports
+        <small>List view of all reports available</small>
       </h1>
     </section>
     <section class="content">
@@ -42,13 +42,6 @@
                     ?>
                   </table>
                 </div><!-- /.box-body -->
-                <div class="row">
-                    <div class="col-xs-12 text-right">
-                        <div class="form-group">
-                            <a class="btn btn-primary button" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
-                        </div>
-                    </div>
-                </div>
               </div><!-- /.box -->
             </div>
         </div>

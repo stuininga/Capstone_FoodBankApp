@@ -45,7 +45,7 @@ class Login extends CI_Controller
     
     
     /**
-     * This function used to logged in user
+     * This function is used to logged in user
      */
     public function loginMe()
     {
@@ -89,7 +89,7 @@ class Login extends CI_Controller
             }
             else
             {
-                $this->session->set_flashdata('error', 'Email or password mismatch');
+                $this->session->set_flashdata('error', 'Email or password don\'t match.');
                 
                 $this->index();
             }
@@ -160,22 +160,22 @@ class Login extends CI_Controller
 
                     if($sendStatus){
                         $status = "send";
-                        setFlashData($status, "Reset password link sent successfully, please check mails.");
+                        setFlashData($status, "Reset password link sent successfully, please check your email.");
                     } else {
                         $status = "notsend";
-                        setFlashData($status, "Email has been failed, try again.");
+                        setFlashData($status, "Sending the email has failed, please try again.");
                     }
                 }
                 else
                 {
                     $status = 'unable';
-                    setFlashData($status, "It seems an error while sending your details, try again.");
+                    setFlashData($status, "There was an error while sending your details, try again.");
                 }
             }
             else
             {
                 $status = 'invalid';
-                setFlashData($status, "This email is not registered with us.");
+                setFlashData($status, "The entered email is not registered with us.");
             }
             redirect('/forgotPassword');
         }

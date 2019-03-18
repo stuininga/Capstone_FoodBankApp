@@ -48,6 +48,13 @@ class Client_form {
             $this->CI->form_validation->set_rules('cell-phone3', 'Cell Phone Suffix', 'trim|numeric|required|exact_length[4]');
         }
 
+        //If the user has selected something from the FAMV dropdown, require the date
+        if(($this->CI->input->post('famv')) != "") {
+            $this->CI->form_validation->set_rules('famv-month', 'FAMV Month', 'required');
+            $this->CI->form_validation->set_rules('famv-day', 'FAMV Day', 'required');
+            $this->CI->form_validation->set_rules('famv-year', 'FAMV Year', 'required');
+        }
+
         //Birth Date Validation
         $this->CI->form_validation->set_rules('birth-day', 'Birth Day', 'required');
         $this->CI->form_validation->set_rules('birth-month', 'Birth Month', 'required');
@@ -82,6 +89,8 @@ class Client_form {
         $formData['location_type'] = $this->CI->input->post('l-type');
         $formData['address_proof'] = $this->CI->input->post('proof-a');
         $formData['landlord'] = $this->CI->input->post('landlord');
+        $formData['special_diet'] = $this->CI->input->post('s-diet');
+        
 
         //Concatenate Phone Number together
         $formData['home_phone'] = $homePhone1 . $homePhone2 . $homePhone3;

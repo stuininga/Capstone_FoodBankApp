@@ -105,7 +105,7 @@ class BaseController extends CI_Controller {
         $this->load->view('includes/header', $headerInfo);
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);
-    }
+	}
 	
 	/**
 	 * This function used provide the pagination resources
