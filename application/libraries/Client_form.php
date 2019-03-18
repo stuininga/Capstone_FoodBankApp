@@ -89,9 +89,17 @@ class Client_form {
         $formData['location_type'] = $this->CI->input->post('l-type');
         $formData['address_proof'] = $this->CI->input->post('proof-a');
         $formData['landlord'] = $this->CI->input->post('landlord');
-        $formData['special_diet'] = $this->CI->input->post('s-diet');
-        
+        $formData['famv'] = $this->CI->input->post('famv');
+        $famvDay = $this->CI->input->post('famv-day');
+        $famvMonth = $this->CI->input->post('famv-month');
+        $famvYear = $this->CI->input->post('famv-year');
 
+        //Get the array of supplied diet recommendations and concatenate it for database storage
+        $diet = $this->CI->input->post('s-diet');
+        foreach ($diet as $dietItem) {
+            $formData['special_diet'] = $formData['special_diet'] . $dietItem . ", ";
+        }
+        
         //Concatenate Phone Number together
         $formData['home_phone'] = $homePhone1 . $homePhone2 . $homePhone3;
 
@@ -109,6 +117,19 @@ class Client_form {
             $formData['client_birthdate'] = date("Y-m-d", strtotime($formData['client_birthdate']));
         }
 
+        //If the user supplied an FAMV date check that it's valid then prepare to insert
+        if (isset($famvDay)) {
+            if (!(checkdate($famvMonth, $famvDay, $famvYear))) {
+                //Bad Date, send empty string
+                $famvDate = "";
+            }
+            else {
+                //Good Date, send formatted date to use
+                $formData['famv_date'] = "$famvYear-$famvMonth-$famvDay";
+                $formData['famv_date'] = date("Y-m-d", strtotime($formData['famv_date']));
+            }
+        }
+        
         return $formData;
     }//End of getFormValues
 
