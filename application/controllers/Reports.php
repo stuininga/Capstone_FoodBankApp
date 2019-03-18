@@ -97,6 +97,70 @@ class Reports extends BaseController
 
     }
 
+    /**
+     * This function creates a PDF for printing or saving a digital version
+
+            // $this->pdf->stream($report_id, array("Attachment"=>0)); will take the user to a view page where they can download and print
+     */  
+
+    function viewDailyReportPDF()
+    {
+        
+        echo "test PDF ";
+
+        // $html_content = '<h3>Convert to PDF</h3>';
+            
+        //     $this->pdf->loadHtml($html_content);
+        //     $this->pdf->render();
+        //     $this->pdf->stream();
+
+        if($this->uri->segment(3)) 
+        {
+            $report_id = $this->uri->segment(3);
+            $data['reportPDF'] = $this->reports_model->getDailyReport();
+            // $this->loadViews("viewClients", $data);
+            // $html_content = ''.$client_code.'<h3 align="center">Convert to PDF</h3>';
+            // $html_content .= $this->client_model->getClientInfoTest($client_code);
+            // $html_content = $this->output->get_output();
+            // $html = ob_get_clean();
+            // $pdf = new DOMPDF();
+            $html_content = $this->load->view('viewDailyReport',$data, TRUE);
+            $this->pdf->loadHtml($html_content);
+            $this->pdf->render();
+            // $this->pdf->stream("".$client_code".pdf", array("Attachment"=>0));
+            // $this->pdf->stream("test.pdf", array("Attachment"=>1));
+            $this->pdf->stream($report_id, array("Attachment"=>0));
+            // $this->pdf->stream();
+        }
+
+
+    }
+
+
+    /**
+     * This function is used to view the daily report
+     */  
+
+    function dailyRecReport()
+    {
+        
+
+        if($this->isAdmin() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            
+            $data['dailyReport'] = $this->reports_model->getDailyReport();
+            
+            $this->global['pageTitle'] = 'Leduc Food Bank | Daily Report';
+
+            $this->loadViews("viewDailyReport", $this->global, $data, NULL);
+        }
+
+    }
+
 
 
 

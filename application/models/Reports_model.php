@@ -42,7 +42,14 @@ class Reports_model extends CI_Model
         return $query->result();
     }
 
-    
+    function getDailyReport()
+    {
+        $this->db->select('client_code, first_name, last_name');
+        $this->db->from('lfb_clients');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
 
 
 

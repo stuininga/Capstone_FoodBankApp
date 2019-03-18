@@ -98,6 +98,8 @@ $route['editClient'] = 'client/editSingleclient';
 /* Report Routes */
 $route['viewReports'] = 'reports/viewReports';
 $route['viewPDF'] = 'reports/viewPDF';
+$route['dailyRecReport'] = 'reports/dailyRecReport';
+$route['viewDailyReportPDF'] = 'reports/viewDailyReportPDF';
 
 
 /* End of file routes.php */
