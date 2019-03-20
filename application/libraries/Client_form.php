@@ -34,6 +34,7 @@ class Client_form {
         $this->CI->form_validation->set_rules('l-type', 'Location Type', 'required');
         $this->CI->form_validation->set_rules('proof-a', 'Proof of Address', 'max_length[100]');
         $this->CI->form_validation->set_rules('landlord', 'Landlord', 'max_length[70]');
+        $this->CI->form_validation->set_rules('famv-comments', 'FAMV Comments', 'max_length[100]');
 
         //Phone Validation
         $this->CI->form_validation->set_rules('home-phone1', 'Main Phone Area Code', 'trim|required|numeric|exact_length[3]');
@@ -93,10 +94,12 @@ class Client_form {
         $famvDay = $this->CI->input->post('famv-day');
         $famvMonth = $this->CI->input->post('famv-month');
         $famvYear = $this->CI->input->post('famv-year');
+        $famvComments = $this->CI->input->post('famv-comments');
 
         //Get the array of supplied diet recommendations and concatenate it for database storage
         $diet = $this->CI->input->post('s-diet');
         foreach ($diet as $dietItem) {
+            $formData['special_diet'] = "";
             $formData['special_diet'] = $formData['special_diet'] . $dietItem . ", ";
         }
         

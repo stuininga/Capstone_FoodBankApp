@@ -104,6 +104,14 @@
                                             <label for="ll-desc">Legal Land Desc.</label>
                                             <input type="text" class="form-control" value="<?php echo set_value('ll-desc', $client->legal_land_desc); ?>" id="ll-desc" name="ll-desc" max-length="100">
                                         </div>
+                                        <div class="col-md-3">
+                                            <label for="l-type"><span class="need">*</span> Location Type</label>
+                                            <select class="form-control required" id="l-type" name="l-type">
+                                                <option value="">Select...</option>
+                                                <option value="urban" <?php if("urban" == set_value('l-type', $client->location_type)) {echo "selected=selected";} ?>>Urban</option>
+                                                <option value="rural" <?php if("rural" == set_value('l-type', $client->location_type)) {echo "selected=selected";} ?>>Rural</option>
+                                            </select>  
+                                        </div>
                                     </div><!--End Row-->
                                     <div class="row">
                                         <div class="col-md-3">
@@ -219,7 +227,81 @@
                                             </div>
                                         </div>
                                     </div><!--End Row-->
-                                </div><!-- /.box-body -->
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                        <?php
+                                            //Split string list of special diet requirements back into array
+                                            $sDietList = explode(',', $client->special_diet);
+                                        ?>
+                                        <div class="form-group checkboxes">
+                                            <label for="s-diet" class="main-label">Special Diet</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" name="s-diet[]" type="checkbox" id="gluten-f" value="gluten-f" <?php if (in_array("gluten-f", $sDietList)) { echo set_checkbox('s-diet[]', 'gluten-f', true); } ?>>
+                                                <label class="form-check-label" for="gluten-f">Gluten Free</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" name="s-diet[]" type="checkbox" id="lactose-i" value="lactose-i" <?php if (in_array(" lactose-i", $sDietList)) { echo set_checkbox('s-diet[]', 'lactose-i', true); } ?>>
+                                                <label class="form-check-label" for="lactose-i">Lactose Intolerant</label>
+                                            </div> 
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" name="s-diet[]" type="checkbox" id="nut-free" value="nut-free" <?php if (in_array(" nut-free", $sDietList)) { echo set_checkbox('s-diet[]', 'nut-free', true); } ?>>
+                                                <label class="form-check-label" for="nut-free">Nut free</label>
+                                            </div> 
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegetarian" value="vegetarian" <?php if (in_array(" vegetarian", $sDietList)) { echo set_checkbox('s-diet[]', 'vegetarian', true); } ?>>
+                                                <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                                            </div> 
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegan" value="vegan" <?php if (in_array(" vegan", $sDietList)) { echo set_checkbox('s-diet[]', 'vegan', true); } ?>>
+                                                <label class="form-check-label" for="vegan">Vegan</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div><!--End Row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="famv">FAMV</label>
+                                            <select class="form-control" id="famv" name="famv">
+                                                <option value="">Select...</option>
+                                                <option value="suspected" <?php if($client->famv == set_value('suspected', $client->famv)) {echo "selected=selected";} ?>>Suspected</option>
+                                                <option value="2" <?php if($client->famv == set_value('2', $client->famv)) {echo "selected=selected";} ?>>2</option>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <?php 
+                                            //Split famv date to fill in the form
+                                            $famvDate = explode('-', $client->famv_date);
+                                        ?>
+                                        <label for="famv-month">FAMV Date</label>
+                                        <select class="form-control" id="famv-month" name="famv-month">
+                                            <option value="">Month</option>
+                                            <?php for($month=1; $month<=12; $month++): ?>
+                                                <option value="<?php echo $month; ?>" <?php if($month == set_value('famv-month', $famvDate[1])) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="famv-day" class="no-label"></label>
+                                        <select class="form-control" id="famv-day" name="famv-day">
+                                            <option value="">Day</option>
+                                            <?php for($date=1; $date<=31; $date++): ?>
+                                                <option value="<?php echo $date ?>" <?php if($date == set_value('famv-day', $famvDate[2])) {echo "selected=selected";} ?>><?php echo $date; ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="famv-year" class="no-label"></label>
+                                        <select class="form-control" id="famv-year" name="famv-year">
+                                            <option value="">Year</option>
+                                            <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
+                                                <option value="<?php echo $year; ?>" <?php if($year == set_value('famv-year', $famvDate[0])) {echo "selected=selected";} ?>><?php echo $year; ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                </div><!--End Row-->
+                            </div><!-- /.box-body -->
                             <?php endforeach; ?>
                         <?php endif; ?>
                         <div class="box-footer form-buttons">

@@ -68,6 +68,32 @@ class Client_model extends CI_Model
     }
 
     /**
+     * This function is used to get the identification names from lfb_clients_identification
+     * @return array $result : This is result of the query
+     */
+    function getClientIdentification()
+    {
+        $this->db->select('identification_id, identification_type');
+        $this->db->from('lfb_clients_identification');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
+     * This function is used to get the income names from lfb_clients_income
+     * @return array $result : This is result of the query
+     */
+    function getClientIncome()
+    {
+        $this->db->select('income_id, income_type');
+        $this->db->from('lfb_clients_income');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
      * This function is used to search all clients based on the user's criteria and return select info
      * @param string $searchQuery : This is the query compiled using the user's criteria
      * @return number $result : This is the result of the query
