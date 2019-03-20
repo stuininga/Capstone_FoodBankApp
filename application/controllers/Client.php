@@ -47,6 +47,8 @@ class Client extends BaseController
             $this->load->model('client_model');
             $data['clientRecord'] = $this->client_model->getClientInfo();
             $data['locationsRecord'] = $this->client_model->getLocations();
+            $data['identificationRecord'] = $this->client_model->getClientIdentification();
+            $data['incomeRecord'] = $this->client_model->getClientIncome();
 
             
             $this->global['pageTitle'] = 'Leduc Food Bank | Add New User';

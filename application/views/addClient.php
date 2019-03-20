@@ -200,30 +200,30 @@
                                     <div class="form-group checkboxes">
                                         <label for="s-diet" class="main-label">Special Diet</label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="gluten-f" value="gluten-f" <?php echo set_checkbox('s-diet[]', 'gluten-f', true); ?>>
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="gluten-f" value="gluten-f" <?php echo set_checkbox('s-diet[]', 'gluten-f', false); ?>>
                                             <label class="form-check-label" for="gluten-f">Gluten Free</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="lactose-i" value="lactose-i" <?php echo set_checkbox('s-diet[]', 'lactose-i', true); ?>>
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="lactose-i" value="lactose-i" <?php echo set_checkbox('s-diet[]', 'lactose-i', false); ?>>
                                             <label class="form-check-label" for="lactose-i">Lactose Intolerant</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="nut-free" value="nut-free" <?php echo set_checkbox('s-diet[]', 'nut-free', true); ?>>
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="nut-free" value="nut-free" <?php echo set_checkbox('s-diet[]', 'nut-free', false); ?>>
                                             <label class="form-check-label" for="nut-free">Nut free</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegetarian" value="vegetarian" <?php echo set_checkbox('s-diet[]', 'vegetarian', true); ?>>
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegetarian" value="vegetarian" <?php echo set_checkbox('s-diet[]', 'vegetarian', false); ?>>
                                             <label class="form-check-label" for="vegetarian">Vegetarian</label>
                                         </div> 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegan" value="vegan" <?php echo set_checkbox('s-diet[]', 'vegan', true); ?>>
+                                            <input class="form-check-input" name="s-diet[]" type="checkbox" id="vegan" value="vegan" <?php echo set_checkbox('s-diet[]', 'vegan', false); ?>>
                                             <label class="form-check-label" for="vegan">Vegan</label>
                                         </div> 
                                     </div>
                                 </div>
                             </div><!--End Row-->
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="famv">FAMV</label>
                                         <select class="form-control" id="famv" name="famv">
@@ -233,7 +233,7 @@
                                         </select> 
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="famv-month">FAMV Date</label>
                                     <select class="form-control" id="famv-month" name="famv-month">
                                         <option value="">Month</option>
@@ -251,7 +251,7 @@
                                         <?php endfor; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="famv-year" class="no-label"></label>
                                     <select class="form-control" id="famv-year" name="famv-year">
                                         <option value="">Year</option>
@@ -259,6 +259,53 @@
                                             <option value="<?php echo $year; ?>" <?php if($year == set_value('famv-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
                                         <?php endfor; ?>
                                     </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="famv-comments">FAMV Comments</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('famv-comments'); ?>" id="famv-comments" name="famv-comments" max-length="100">
+                                    </div> 
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="id-type"><span class="need">*</span> Identification Type</label>
+                                        <select class="form-control required" id="id-type" name="id-type">
+                                            <option value="">Select ID Type</option>
+                                            <?php foreach ($identificationRecord as $identification): ?>
+                                                    <option value="<?php echo $identification->identification_id ?>" <?php if($identification->identification_type == set_value('identification')) {echo "selected=selected";} ?>><?php echo $identification->identification_type ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="id-number">ID Number</label>
+                                    <input type="text" class="form-control" value="<?php echo set_value('id-number'); ?>" id="id-number" name="id-number" max-length="30">
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="primary-income-type"><span class="need">*</span> Primary Income Source</label>
+                                        <select class="form-control required" id="primary-income-type" name="primary-income-type">
+                                            <option value="">Select Income Type</option>
+                                            <?php foreach ($incomeRecord as $income): ?>
+                                                    <option value="<?php echo $income->income_id ?>" <?php if($income->income_type == set_value('primary-income-type')) {echo "selected=selected";} ?>><?php echo $income->income_type ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="secondary-income-type"><span class="need">*</span> Secondary Income Source</label>
+                                        <select class="form-control required" id="secondary-income-type" name="secondary-income-type">
+                                            <option value="">Select Income Type</option>
+                                            <?php foreach ($incomeRecord as $income): ?>
+                                                    <option value="<?php echo $income->income_id ?>" <?php if($income->income_type == set_value('secondary-income-type')) {echo "selected=selected";} ?>><?php echo $income->income_type ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div><!--End Row-->
                         </div><!-- /.box-body -->
