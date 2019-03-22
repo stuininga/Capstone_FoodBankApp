@@ -307,7 +307,61 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="monthly-income"><span class="need">*</span> Total Monthly Income</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('monthly-income'); ?>" id="monthly-income" name="monthly-income" max-length="6">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="utilities">Utilities</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('utilities'); ?>" id="utilities" name="utilities" max-length="6">
+                                    </div>
+                                </div>
                             </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="res-status-type"><span class="need">*</span> Residential Status</label>
+                                        <select class="form-control required" id="res-status-type" name="res-status-type">
+                                            <option value="">Select Status Type</option>
+                                            <?php foreach ($statusRecord as $status): ?>
+                                                    <option value="<?php echo $status->status_id ?>" <?php if($status->status_type == set_value('res-status-type')) {echo "selected=selected";} ?>><?php echo $status->status_type ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="res-amount"> Amount</label>
+                                            <input type="text" class="form-control" value="<?php echo set_value('res-amount'); ?>" id="res-amount" name="res-amount" max-length="6">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="res-other"> Other</label>
+                                            <input type="text" class="form-control" value="<?php echo set_value('res-other'); ?>" id="res-other" name="res-other" max-length="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="fam-status"><span class="need">*</span> Family Status</label>
+                                        <select class="form-control required" id="fam-status" name="fam-status">
+                                            <option value="">Select Family Status</option>
+                                            <?php foreach ($fstatusRecord as $fstatus): ?>
+                                                    <option value="<?php echo $fstatus->fstatus_id ?>" <?php if($fstatus->fstatus_type == set_value('fam-status')) {echo "selected=selected";} ?>><?php echo $fstatus->fstatus_type ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div><!-- /.box-body -->
     
                         <div class="box-footer form-buttons">
