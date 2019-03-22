@@ -109,7 +109,7 @@ class Client_form {
         //Concatenate Cell Phone Number together
         $formData['cell_phone'] = $cellPhone1 . $cellPhone2 . $cellPhone3;
 
-        //Check that the date the user submitted is valid, if not, don't insert
+        //Check that the birth date the user submitted is valid, if not, don't insert
         if (!(checkdate($birthMonth, $birthDay, $birthYear))) {
             //Bad Date, send empty string
             $birthDate = "";
@@ -121,16 +121,11 @@ class Client_form {
         }
 
         //If the user supplied an FAMV date check that it's valid then prepare to insert
-        if (isset($famvDay)) {
-            if (!(checkdate($famvMonth, $famvDay, $famvYear))) {
-                //Bad Date, send empty string
-                $famvDate = "";
-            }
-            else {
-                //Good Date, send formatted date to use
-                $formData['famv_date'] = "$famvYear-$famvMonth-$famvDay";
-                $formData['famv_date'] = date("Y-m-d", strtotime($formData['famv_date']));
-            }
+        if (!empty($famvDay) && !empty($famvMonth) && !empty($famvYear)) {
+            echo "Day:" . $famvDay;
+            //Good Date, send formatted date to use
+            $formData['famv_date'] = "$famvYear-$famvMonth-$famvDay";
+            $formData['famv_date'] = date("Y-m-d", strtotime($formData['famv_date']));
         }
         
         return $formData;

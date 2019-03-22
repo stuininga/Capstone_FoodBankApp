@@ -94,6 +94,32 @@ class Client_model extends CI_Model
     }
 
     /**
+     * This function is used to get the residential types from lfb_clients_res_status
+     * @return array $result : This is result of the query
+     */
+    function getClientResStatus()
+    {
+        $this->db->select('status_id, status_type');
+        $this->db->from('lfb_clients_res_status');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
+     * This function is used to get the family status types from lfb_clients_fam_status
+     * @return array $result : This is result of the query
+     */
+    function getClientFamStatus()
+    {
+        $this->db->select('fstatus_id, fstatus_type');
+        $this->db->from('lfb_clients_fam_status');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
      * This function is used to search all clients based on the user's criteria and return select info
      * @param string $searchQuery : This is the query compiled using the user's criteria
      * @return number $result : This is the result of the query

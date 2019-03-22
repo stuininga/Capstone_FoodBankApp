@@ -49,6 +49,8 @@ class Client extends BaseController
             $data['locationsRecord'] = $this->client_model->getLocations();
             $data['identificationRecord'] = $this->client_model->getClientIdentification();
             $data['incomeRecord'] = $this->client_model->getClientIncome();
+            $data['statusRecord'] = $this->client_model->getClientResStatus();
+            $data['fstatusRecord'] = $this->client_model->getClientFamStatus();
 
             
             $this->global['pageTitle'] = 'Leduc Food Bank | Add New User';
@@ -84,29 +86,35 @@ class Client extends BaseController
 
                 //Check if the date is blank due to an error
                 if ($formData['client_birthdate'] == "") {
-                    $this->session->set_flashdata('error', 'Submitted date is invalid.');
+                    $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
                     $this->addNewClientForm();     
                 }
                 else {
-                    //Pass the info from the form to the Client Model
-                    $result = $this->client_model->addNewClient($formData);
-
-                    //Check if anything was loaded to the database
-                    if($result > 0)
-                    {
-                        //The client was inserted, display success
-                        $this->session->set_flashdata('success', 'New Client was added successfully' );
-
-                        //Reload the page
-                        redirect('addNewClient');               
-                    }
-                    else
-                    {
-                        //The client was not inserted, display an error
-                        $this->session->set_flashdata('error', 'Client insert failed');;  
+                    if ($formData['famv_date'] == "") {
+                        $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
                         $this->addNewClientForm();
                     }
-                }//End of check if date is valid
+                    else {
+                        //Pass the info from the form to the Client Model
+                        $result = $this->client_model->addNewClient($formData);
+
+                        //Check if anything was loaded to the database
+                        if($result > 0)
+                        {
+                            //The client was inserted, display success
+                            $this->session->set_flashdata('success', 'New Client was added successfully' );
+
+                            //Reload the page
+                            redirect('addNewClient');               
+                        }
+                        else
+                        {
+                            //The client was not inserted, display an error
+                            $this->session->set_flashdata('error', 'Client insert failed');;  
+                            $this->addNewClientForm();
+                        }
+                    }//End of check if famv date is valid
+                }//End of check if birth date is valid
             }//End of check if user's first time on page
         }//End of check if user is logged in
     }//End of addNewClient Function
@@ -269,31 +277,38 @@ class Client extends BaseController
                 //If the validation has passed, get the values
                 $formData = $this->client_form->getFormValues();
 
-                //Check if the date is blank due to an error
+                //Check if the birth date is blank due to an error
                 if ($formData['client_birthdate'] == "") {
-                    $this->session->set_flashdata('error', 'Submitted date is invalid.');
+                    $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
                     $this->addNewClientForm();     
                 }
                 else {
-                    //Pass the info from the form to the Client Model
-                    $result = $this->client_model->editClient($formData, $clientID);
-
-                    //Check if anything was loaded to the database
-                    if($result > 0)
-                    {
-                        //The client was inserted, display success
-                        $this->session->set_flashdata('success', 'Client was edited successfully' );
-
-                        //Reload, but keep the form populated
-                        $this->editSingleClientForm();               
+                    //Check if the famv date is blank due to an error
+                    if ($formData['famv_date'] == "") {
+                        $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
+                        $this->addNewClientForm();     
                     }
-                    else
-                    {
-                        //The client was not inserted, display an error
-                        $this->session->set_flashdata('error', 'Client insert failed');;  
-                        $this->addNewClientForm();
-                    }
-                }//End of check if date is valid
+                    else {
+                        //Pass the info from the form to the Client Model
+                        $result = $this->client_model->editClient($formData, $clientID);
+
+                        //Check if anything was loaded to the database
+                        if($result > 0)
+                        {
+                            //The client was inserted, display success
+                            $this->session->set_flashdata('success', 'Client was edited successfully' );
+
+                            //Reload, but keep the form populated
+                            $this->editSingleClientForm();               
+                        }
+                        else
+                        {
+                            //The client was not inserted, display an error
+                            $this->session->set_flashdata('error', 'Client insert failed');;  
+                            $this->addNewClientForm();
+                        }
+                    }//End of check if famv date is valid
+                }//End of check if birth date is valid
             }//End of check if user's first time on page
         }//End of check if user is logged in
     }//End of editSingleClient
