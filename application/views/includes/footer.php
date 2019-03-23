@@ -18,6 +18,18 @@
         var y= $('a[href="'+windowURL+'"]');
             y.addClass('active');
             y.parent().addClass('active');
+
+        $("#wizard").steps({
+            headerTag: "h3",
+            bodyTag: "div",
+            transitionEffect: "slideLeft",
+            autoFocus: true,
+            enableFinishButton: false,
+            enablePagination: false,
+            enableAllSteps: true,
+            titleTemplate: "#title#",
+            cssClass: "tabcontrol"
+      });
     </script>
   </body>
 </html>
