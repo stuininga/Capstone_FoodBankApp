@@ -7,26 +7,31 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--jQuery with jQuery Steps-->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/jquery.steps.js"></script>
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!-- Theme style -->
     <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS File-->
     <link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery Steps CSS File-->
+    <link href="<?php echo base_url(); ?>assets/dist/css/steps.css" rel="stylesheet" type="text/css" />
     <style>
     	.error{
     		color:red;
     		font-weight: normal;
     	}
     </style>
-    <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script> -->
     <script type="text/javascript">
         var baseURL = "<?php echo base_url(); ?>";
     </script>
 
       <?php
         //For testing, remove later!
-        //This variable will be populated based on which database the user is in, to change the colour of the links, etc.
+        //This variable will be populated based on which "database" the user is in, to change the colour of the links, etc.
         $databaseColor="green";
       ?>
 
@@ -46,9 +51,7 @@
 
   </head>
   <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-      
-      <header class="main-header">
+    <header class="main-header">
         <!-- Logo -->
         <a href="<?php echo base_url(); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
