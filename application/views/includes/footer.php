@@ -18,6 +18,54 @@
         var y= $('a[href="'+windowURL+'"]');
             y.addClass('active');
             y.parent().addClass('active');
+
+    //     $("#wizard").steps({
+    //         headerTag: "h3",
+    //         bodyTag: "div",
+    //         transitionEffect: "slideLeft",
+    //         autoFocus: true,
+    //         enableFinishButton: false,
+    //         enablePagination: false,
+    //         enableAllSteps: true,
+    //         titleTemplate: "#title#",
+    //         cssClass: "tabcontrol"
+    //   });
+       $("#wizard").steps({
+            headerTag: "h3",
+            bodyTag: "div",
+            transitionEffect: "slideLeft",
+            autoFocus: true,
+            enableFinishButton: false,
+            enablePagination: false,
+            enableAllSteps: true
+        });
+
+        /** Custom Pagination buttons to allow for validation */
+        $(".goto-step0").click(function(e){
+            $("#wizard-t-0").click();
+        });
+
+        $(".goto-step1").click(function(e){
+            $("#wizard-t-1").click();
+        });
+
+        $(".goto-step2").click(function(e){
+            $("#wizard-t-2").click();
+        });
+
+        $(".goto-step3").click(function(e){
+            $("#wizard-t-3").click();
+        });
+
+        $(".goto-step4").click(function(e){
+            $("#wizard-t-4").click();
+        });
+
+        $(".goto-step5").click(function(e){
+            $("#wizard-t-5").click();
+        });
+      
+
     </script>
   </body>
 </html>

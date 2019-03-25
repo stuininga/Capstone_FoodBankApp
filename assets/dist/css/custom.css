@@ -396,6 +396,29 @@ span.need {
 }
 
 
+/*** Form Steps ***/
+.form-heading {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+.form-heading.first {
+    margin-top: 0;
+}
+section.content.client-form {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.client-form .form-buttons {
+    padding-left: 0;
+    position: absolute;
+    bottom: 0;
+}
+.client-form .form-buttons a {
+    width: 150px;
+}
+
+
 @media only screen and (max-width: 1064px) {
     .login-page .login-box {
         width: 60%;
