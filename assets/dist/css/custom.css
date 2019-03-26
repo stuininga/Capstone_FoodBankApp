@@ -404,6 +404,7 @@ span.need {
 .form-heading.first {
     margin-top: 0;
 }
+<<<<<<< HEAD
 section.content.client-form {
     width: 100%;
     margin-left: 0;
@@ -417,6 +418,8 @@ section.content.client-form {
 .client-form .form-buttons a {
     width: 150px;
 }
+=======
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 
 
 @media only screen and (max-width: 1064px) {

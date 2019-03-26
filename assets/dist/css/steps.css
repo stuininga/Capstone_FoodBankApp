@@ -68,12 +68,20 @@
 
 .wizard > .steps .number
 {
+<<<<<<< HEAD
     display: none;
+=======
+    font-size: 1.429em;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 }
 
 .wizard > .steps > ul > li
 {
+<<<<<<< HEAD
     width: 16.6666666666666666%;
+=======
+    width: 25%;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 }
 
 .wizard > .steps > ul > li,
@@ -95,9 +103,14 @@
     display: block;
     width: auto;
     margin: 0 0.5em 0.5em;
+<<<<<<< HEAD
     padding: 0.8em 1em;
     text-decoration: none;
     display: none;
+=======
+    padding: 1em 1em;
+    text-decoration: none;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -117,19 +130,30 @@
 .wizard > .steps .current a:hover,
 .wizard > .steps .current a:active
 {
+<<<<<<< HEAD
     background: #a1b545;
     color: #fff;
     cursor: default;
     display: block;
+=======
+    background: #2184be;
+    color: #fff;
+    cursor: default;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 }
 
 .wizard > .steps .done a,
 .wizard > .steps .done a:hover,
 .wizard > .steps .done a:active
 {
+<<<<<<< HEAD
     background: #C4D18B;
     color: #fff;
     display: block;
+=======
+    background: #9dc8e2;
+    color: #fff;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 }
 
 .wizard > .steps .error a,
@@ -142,6 +166,7 @@
 
 .wizard > .content
 {
+<<<<<<< HEAD
     background: #ffffff;
     display: block;
     margin: 0.5em;
@@ -153,6 +178,15 @@
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     position: relative;
+=======
+    background: #eee;
+    display: block;
+    margin: 0.5em;
+    min-height: 35em;
+    overflow: hidden;
+    position: relative;
+    width: auto;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -174,7 +208,10 @@
     width: 95%;
     height: 95%;
     padding: 2.5%;
+<<<<<<< HEAD
     padding-top: 20px; 
+=======
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
 }
 
 .wizard > .content > .body ul
@@ -261,7 +298,11 @@
 .wizard > .actions a:hover,
 .wizard > .actions a:active
 {
+<<<<<<< HEAD
     background: #a1b545;
+=======
+    background: #2184be;
+>>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
     color: #fff;
     display: block;
     padding: 0.5em 1em;
