@@ -51,8 +51,7 @@ class Client extends BaseController
             $data['incomeRecord'] = $this->client_model->getClientIncome();
             $data['statusRecord'] = $this->client_model->getClientResStatus();
             $data['fstatusRecord'] = $this->client_model->getClientFamStatus();
-
-            
+ 
             $this->global['pageTitle'] = 'Leduc Food Bank | Add New User';
 
             $this->loadViews("addClient", $this->global, $data, NULL);
@@ -70,51 +69,88 @@ class Client extends BaseController
         }
         else
         {
+            //Declare $formData to be used to collect all data from the form
+            $formData = "";
+
+            //First page (Personal Details) validation
+            if(isset($_POST['personal-submit'])) {
+                $this->client_form->setValidationRules(1);
+                
+                //Check if the page has validated...
+                if($this->form_validation->run() == TRUE) {
+                    //If the validation passed, get the values 
+                    $formData = $this->client_form->getFormValues(1);
+
+                    //Check if the birth date is a legal date (e.g. not Feb 31)
+                    if ($formData['client_birthdate'] == "") {
+                        $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
+                        $this->addNewClientForm();     
+                    }
+                    else {
+                        if(!empty($formData['famv_date'])) {
+                            //Check if the FAMV date is a legal date (e.g. not Feb 31)
+                            if ($formData['famv_date'] == "") {
+                                $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
+                                $this->addNewClientForm();
+                            }
+                            else {
+                                //All good! Next page
+                                $this->addNewClientForm();
+                            }
+                        }
+                    }
+                }//End of form validation check
+            }//End of Personal Details
+
+
             //Set the validation rules
-            $this->client_form->setValidationRules();
+            //$this->client_form->setValidationRules();
 
             //Check if this is the user's first time on the page
             if($this->form_validation->run() == FALSE)
             {
                 //If it is the first time, load the form
                 $this->addNewClientForm();
+
+
             }
             else
             {
+
                 //If the validation has passed, get the values
-                $formData = $this->client_form->getFormValues();
+                //$formData = $this->client_form->getFormValues();
 
                 //Check if the date is blank due to an error
-                if ($formData['client_birthdate'] == "") {
-                    $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
-                    $this->addNewClientForm();     
-                }
-                else {
-                    if ($formData['famv_date'] == "") {
-                        $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
-                        $this->addNewClientForm();
-                    }
-                    else {
-                        //Pass the info from the form to the Client Model
-                        $result = $this->client_model->addNewClient($formData);
+                // if ($formData['client_birthdate'] == "") {
+                //     $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
+                //     $this->addNewClientForm();     
+                // }
+                // else {
+                //     if ($formData['famv_date'] == "") {
+                //         $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
+                //         $this->addNewClientForm();
+                //     }
+                //     else {
+                //         //Pass the info from the form to the Client Model
+                //         $result = $this->client_model->addNewClient($formData);
 
-                        //Check if anything was loaded to the database
-                        if($result > 0)
-                        {
-                            //The client was inserted, display success
-                            $this->session->set_flashdata('success', 'New Client was added successfully' );
+                //         //Check if anything was loaded to the database
+                //         if($result > 0)
+                //         {
+                //             //The client was inserted, display success
+                //             $this->session->set_flashdata('success', 'New Client was added successfully' );
 
-                            //Reload the page
-                            redirect('addNewClient');               
-                        }
-                        else
-                        {
-                            //The client was not inserted, display an error
-                            $this->session->set_flashdata('error', 'Client insert failed');;  
-                            $this->addNewClientForm();
-                        }
-                    }//End of check if famv date is valid
-                }//End of check if birth date is valid
+                //             //Reload the page
+                //             redirect('addNewClient');               
+                //         }
+                //         else
+                //         {
+                //             //The client was not inserted, display an error
+                //             $this->session->set_flashdata('error', 'Client insert failed');;  
+                //             $this->addNewClientForm();
+                //         }
+                    //}//End of check if famv date is valid
+                //}//End of check if birth date is valid
             }//End of check if user's first time on page
         }//End of check if user is logged in
     }//End of addNewClient Function

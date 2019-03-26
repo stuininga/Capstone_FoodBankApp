@@ -19,7 +19,6 @@
             y.addClass('active');
             y.parent().addClass('active');
 
-<<<<<<< HEAD
     //     $("#wizard").steps({
     //         headerTag: "h3",
     //         bodyTag: "div",
@@ -32,16 +31,12 @@
     //         cssClass: "tabcontrol"
     //   });
        $("#wizard").steps({
-=======
-        $("#wizard").steps({
->>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
             headerTag: "h3",
             bodyTag: "div",
             transitionEffect: "slideLeft",
             autoFocus: true,
             enableFinishButton: false,
             enablePagination: false,
-<<<<<<< HEAD
             enableAllSteps: true
         });
 
@@ -71,12 +66,6 @@
         });
       
 
-=======
-            enableAllSteps: true,
-            titleTemplate: "#title#",
-            cssClass: "tabcontrol"
-      });
->>>>>>> a699dc03721bdfb9427852eda3160b7d3cd06568
     </script>
   </body>
 </html>
