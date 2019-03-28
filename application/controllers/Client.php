@@ -73,49 +73,49 @@ class Client extends BaseController
             $formData = "";
 
             //First page (Personal Details) validation
-            if(isset($_POST['personal-submit'])) {
-                $this->client_form->setValidationRules(1);
+             if(isset($_POST['personal-submit'])) {
+                 $this->client_form->setValidationRules(1);
                 
                 //Check if the page has validated...
-                if($this->form_validation->run() == TRUE) {
-                    //If the validation passed, get the values 
-                    $formData = $this->client_form->getFormValues(1);
+                 if($this->form_validation->run() == TRUE) {
+                     //If the validation passed, get the values 
+                     $formData = $this->client_form->getFormValues(1);
 
-                    //Check if the birth date is a legal date (e.g. not Feb 31)
-                    if ($formData['client_birthdate'] == "") {
-                        $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
-                        $this->addNewClientForm();     
-                    }
-                    else {
-                        if(!empty($formData['famv_date'])) {
-                            //Check if the FAMV date is a legal date (e.g. not Feb 31)
-                            if ($formData['famv_date'] == "") {
-                                $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
-                                $this->addNewClientForm();
-                            }
-                            else {
-                                //All good! Next page
-                                $this->addNewClientForm();
-                            }
-                        }
-                    }
-                }//End of form validation check
-            }//End of Personal Details
+                     //Check if the birth date is a legal date (e.g. not Feb 31)
+                     if ($formData['client_birthdate'] == "") {
+                         $this->session->set_flashdata('error', 'Submitted birth date is invalid.');
+                         $this->addNewClientForm();     
+                     }
+                     else {
+                         // if(!empty($formData['famv_date'])) {
+                             //Check if the FAMV date is a legal date (e.g. not Feb 31)
+                             if ($formData['famv_date'] == "BAD") {
+                                 $this->session->set_flashdata('error', 'Submitted famv date is invalid.');
+                                 $this->addNewClientForm();
+                             }
+                             else {
+                                 //All good! Next page
+                                 $this->addNewClientForm();
+                             }
+                         //}
+                     }
+                 }//End of form validation check
+             }//End of Personal Details
 
 
             //Set the validation rules
             //$this->client_form->setValidationRules();
 
             //Check if this is the user's first time on the page
-            if($this->form_validation->run() == FALSE)
-            {
+             if($this->form_validation->run() == FALSE)
+             {
                 //If it is the first time, load the form
                 $this->addNewClientForm();
 
 
-            }
-            else
-            {
+             }
+             else
+             {
 
                 //If the validation has passed, get the values
                 //$formData = $this->client_form->getFormValues();
@@ -141,7 +141,7 @@ class Client extends BaseController
                 //             $this->session->set_flashdata('success', 'New Client was added successfully' );
 
                 //             //Reload the page
-                //             redirect('addNewClient');               
+                            //  redirect('addNewClient');               
                 //         }
                 //         else
                 //         {

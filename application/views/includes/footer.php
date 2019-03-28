@@ -35,8 +35,8 @@
             bodyTag: "div",
             transitionEffect: "slideLeft",
             autoFocus: true,
-            enableFinishButton: false,
-            enablePagination: false,
+            enableFinishButton: true,
+            enablePagination: true,
             enableAllSteps: true
         });
 

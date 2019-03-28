@@ -11,8 +11,38 @@
             <div class="col-md-12">
                 <div class="box box-green">
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="searchClients" action="<?php echo base_url() ?>searchClients" method="post" role="form">
-                        <div class="box-body">
+                    <div class="box-body">
+                        <form role="form" id="searchClientscode" action="<?php echo base_url() ?>searchClients" method="post" role="form">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="ccode-s">Client Code</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('ccode-s'); ?>" id="ccode-s" name="ccode-s">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group row-buttons">
+                                        <input type="submit" name="search-button-code" class="btn btn-primary btn-block btn-flat" value="Search by Client Code" />
+                                    </div>
+                                </div>
+                            </div><!--End Row-->
+                        </form>
+                        <form role="form" id="searchClientsaddress" action="<?php echo base_url() ?>searchClients" method="post" role="form">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="address-s">Client Code</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('address-'); ?>" id="address-s" name="address-s">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group row-buttons">
+                                        <input type="submit" name="search-button-address" class="btn btn-primary btn-block btn-flat" value="Search by Address" />
+                                    </div>
+                                </div>
+                            </div><!--End Row-->
+                        </form>
+                        <form role="form" id="searchClientsdetails" action="<?php echo base_url() ?>searchClients" method="post" role="form">
                             <div class="row">
                                 <div class="col-md-2">                                
                                     <div class="form-group">
@@ -61,9 +91,9 @@
                                     </div>
                                 </div>
                             </div><!--End row-->
-                        </div><!--End box-body-->
-                    </div><!--End of box-->
-                </form>
+                        </form>
+                    </div><!--End box-body-->
+                </div><!--End of box-->
             </div>
         </div><!--End of search-fields-->
         <div class="row">

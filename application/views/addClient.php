@@ -49,20 +49,20 @@
                                         <select class="form-control required" id="fam-status" name="fam-status">
                                             <option value="">Select Family Status</option>
                                             <?php foreach ($fstatusRecord as $fstatus): ?>
-                                                    <option value="<?php echo $fstatus->fstatus_id ?>" <?php if($fstatus->fstatus_type == set_value('fam-status')) {echo "selected=selected";} ?>><?php echo $fstatus->fstatus_type ?></option>
+                                                    <option value="<?php echo $fstatus->fstatus_id ?>" <?php if($fstatus->fstatus_id == set_value('fam-status')) {echo "selected=selected";} ?>><?php echo $fstatus->fstatus_type ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
                             </div><!--End Row-->
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="id-type"><span class="need">*</span> Identification Type</label>
                                         <select class="form-control required" id="id-type" name="id-type">
                                             <option value="">Select ID Type</option>
                                             <?php foreach ($identificationRecord as $identification): ?>
-                                                    <option value="<?php echo $identification->identification_id ?>" <?php if($identification->identification_type == set_value('identification')) {echo "selected=selected";} ?>><?php echo $identification->identification_type ?></option>
+                                                    <option value="<?php echo $identification->identification_id ?>" <?php if($identification->identification_id == set_value('id-type')) {echo "selected=selected";} ?>><?php echo $identification->identification_type ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

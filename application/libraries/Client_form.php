@@ -174,10 +174,19 @@ class Client_form {
                 $famvYear = $this->CI->input->post('famv-year');
                 //If the user supplied an FAMV date check that it's valid then prepare to insert
                 if (!empty($famvDay) && !empty($famvMonth) && !empty($famvYear)) {
-                    echo "Day:" . $famvDay;
-                    //Good Date, send formatted date to use
-                    $formData['famv_date'] = "$famvYear-$famvMonth-$famvDay";
-                    $formData['famv_date'] = date("Y-m-d", strtotime($formData['famv_date']));
+                    if (!(checkdate($famvMonth, $famvDay, $famvYear))) {
+                        //Bad date
+                        $formData['famv_date'] = "BAD";
+                    }
+                    else {
+                        //Good Date, send formatted date to use
+                        $formData['famv_date'] = "$famvYear-$famvMonth-$famvDay";
+                        $formData['famv_date'] = date("Y-m-d", strtotime($formData['famv_date']));
+                    }
+                }
+                else {
+                    //No date was supplied, not needed
+                    $formData['famv_date'] = "";
                 }
                 $famvComments = $this->CI->input->post('famv-comments');
             break;//End of Personal Details  
