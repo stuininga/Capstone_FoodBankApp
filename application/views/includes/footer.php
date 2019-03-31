@@ -9,6 +9,9 @@
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/custom.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/typeahead.js"></script>
+
     <script type="text/javascript">
         var windowURL = window.location.href;
         pageURL = windowURL.substring(0, windowURL.lastIndexOf('/'));
@@ -19,6 +22,7 @@
             y.addClass('active');
             y.parent().addClass('active');
 
+        //Multipage form (jQuery Steps)
     //     $("#wizard").steps({
     //         headerTag: "h3",
     //         bodyTag: "div",
@@ -63,6 +67,24 @@
 
         $(".goto-step5").click(function(e){
             $("#wizard-t-5").click();
+        });
+
+        $(document).ready(function () {
+            $('.address').typeahead({
+                source: function (query, result) {
+                    $.ajax({
+                        url: "includes/server.php",
+                        data: 'query=' + query,            
+                        dataType: "json",
+                        type: "POST",
+                        success: function (data) {
+                            result($.map(data, function (item) {
+                                return item;
+                            }));
+                        }
+                    });
+                }
+            });
         });
       
 

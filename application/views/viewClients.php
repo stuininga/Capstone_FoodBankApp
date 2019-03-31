@@ -31,8 +31,8 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="address-s">Client Code</label>
-                                        <input type="text" class="form-control" value="<?php echo set_value('address-'); ?>" id="address-s" name="address-s">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control address" value="<?php echo set_value('address'); ?>" id="address" name="address">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group row-buttons">
-                                        <input type="submit" name="search-button" class="btn btn-primary btn-block btn-flat" value="Search" />
+                                        <input type="submit" name="search-button-personal" class="btn btn-primary btn-block btn-flat" value="Search" />
                                     </div>
                                 </div>
                             </div><!--End row-->
@@ -124,9 +124,9 @@
                                         </span>
                                     </li>
                                     <li>
-                                        <span class="label">Region</span>
+                                        <span class="label">Address</span>
                                         <span class="detail">
-                                            <?php echo $client->location_name; ?>
+                                            <?php echo $client->address; ?>
                                         </span>
                                     </li>
                                     <li>                                        

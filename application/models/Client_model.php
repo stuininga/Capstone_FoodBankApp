@@ -10,16 +10,28 @@
 class Client_model extends CI_Model
 {
 
-    // /**
-    //  * This function is used to get the client's information
-    //  * @return array $result : This is result of the query
-    //  */
+     /**
+      * This function is used to get the client's information
+      * @param int $id : The specific id of the client to get. If blank, return all
+      * @return array $result : This is result of the query
+     */
     function getClientInfo()
     {
-        $this->db->select('client_code, first_name, last_name, address, city, province, postal_code, location_id, legal_land_desc, location_type, address_proof, landlord, client_birthdate, home_phone, cell_phone, special_diet, famv, famv_date');
-        $this->db->from('lfb_clients');
-        $query = $this->db->get();
-        
+        if(empty($id)) {
+            $this->db->select('Client.client_code, Client.household_id, Client.first_name, Client.last_name, Client.client_birthdate, Client.home_phone, Client.cell_phone, Client.gender, Client.special_diet, Client.famv, Client.famv_date, Client.famv_comments, Client.family_status, Client.cid_type, Client.cid_number, Client.active, Client.residential_status, Client.primary_income, Client.secondary_income, Client.other_income, Client.total_monthly_income, Client.rent_mortgage, Client.utilities, Client.public_comments, Client.special_fields, Household.location_id, Household.address, Household.city, Household.province, Household.postal_code, Household.legal_land_desc, Household.location_type, Household.address_proof, Household.landlord');
+            $this->db->from('lfb_clients_next as Client');
+            $this->db->join('lfb_household as Household','Client.household_id = Household.household_id');
+            $query = $this->db->get();
+        }
+        else {
+            $this->db->select('Client.client_code, Client.household_id, Client.first_name, Client.last_name, Client.client_birthdate, Client.home_phone, Client.cell_phone, Client.gender, Client.special_diet, Client.famv, Client.famv_date, Client.famv_comments, Client.family_status, Client.cid_type, Client.cid_number, Client.active, Client.residential_status, Client.primary_income, Client.secondary_income, Client.other_income, Client.total_monthly_income, Client.rent_mortgage, Client.utilities, Client.public_comments, Client.special_fields, Household.location_id, Household.address, Household.city, Household.province, Household.postal_code, Household.legal_land_desc, Household.location_type, Household.address_proof, Household.landlord');
+            $this->db->from('lfb_clients_next as Client');
+            $this->db->join('lfb_household as Household','Client.household_id = Household.household_id');
+            $this->db->where('Client.client_code', $id);
+            $query = $this->db->get();
+        }
+
+    
         return $query->result();
     }
 
@@ -42,13 +54,23 @@ class Client_model extends CI_Model
 
     /**
      * This function is used to get the locations from lfb_clients_locations
+     * @param int $id : The id to query by, if blank return all
      * @return array $result : This is result of the query
      */
-    function getLocations()
+    function getLocations($id = '')
     {
-        $this->db->select('location_id, location_name');
-        $this->db->from('lfb_clients_location');
-        $query = $this->db->get();
+        if(empty($id)) {
+            $this->db->select('location_id, location_name');
+            $this->db->from('lfb_clients_location');
+            $query = $this->db->get();
+        }
+        else {
+            $this->db->select('location_id, location_name');
+            $this->db->from('lfb_clients_location');
+            $this->db->where('location_id', $id);
+            $query = $this->db->get();
+        }
+
         
         return $query->result();
     }
