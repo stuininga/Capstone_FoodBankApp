@@ -167,35 +167,15 @@ class Client extends BaseController
             //Set pageTitle
             $this->global['pageTitle'] = 'Leduc Food Bank | Search Clients';
             $data['locationsRecord'] = $this->client_model->getLocations();
-            
-            //VALIDATE
-            $this->load->library('form_validation');
 
-            //If the user has typed into the phone field check that they have typed a full phone number
-            if(($this->input->post('phone-s1') != "") || ($this->input->post('phone-s2') != "") || ($this->input->post('phone-s3') != "")) {
-                //Set Phone Rules
-                $this->form_validation->set_rules('phone-s1', 'Phone Area Code', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('phone-s2', 'Phone Prefix', 'trim|numeric|required|exact_length[3]');
-                $this->form_validation->set_rules('phone-s3', 'Phone Suffix', 'trim|numeric|required|exact_length[4]');
-            }
-
-            //If the validation has passed, get the values
-            $firstName = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('fname-s')))));
-            $lastName = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('lname-s')))));
-            $locationID = $this->input->post('location-s');
-            $phone1 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s1'))));
-            $phone2 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s2'))));
-            $phone3 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s3'))));
-
-            //Concatenate Phone Number together
-            $phone = $phone1 . $phone2 . $phone3;
-
-            // Load the page based on whether the button was pressed
-            if(isset($_POST['search-button']))   {
+            //Determine what to query based on which button was clicked
+            if (isset($_POST['search-button-code'])) {
+                //Get the value
+                $ccode = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('ccode-s')))));
                 //Check that the user has ACTUALLY searched something
-                if ((!empty($firstName)) || (!empty($lastName)) || (!empty($locationID)) || (!empty($phone))) {
-                    //Begin assembling the query!
-                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.first_name LIKE \"%$firstName%\" AND Client.last_name LIKE \"%$lastName%\" AND Client.location_id LIKE \"%$locationID%\" AND Client.home_phone LIKE \"%$phone%\"";
+                if (!empty($ccode)) {
+                    //Create the query!
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = \"$ccode\"";
 
                     //Pass the query to the client_model
                     $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
@@ -205,12 +185,74 @@ class Client extends BaseController
                 //If they didn't search anything, continue displaying the "blank" version of the page
                 else {
                     $this->loadViews("viewClients", $this->global, $data, NULL);
-                }   
-            }
-            //If they didn't press the button display the "blank" version of the page
+                }
+            }//End of client code
+
+
+            else if (isset($_POST['search-button-address'])) {
+                //Get the value
+                $address = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('address')))));
+                //Check that the user has ACTUALLY searched something
+                if (!empty($address)) {
+                    //Create the query!
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.address LIKE \"%$address%\"";
+
+                    //Pass the query to the client_model
+                    $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
+
+                    $this->searchedClients($searchQuery);
+                }  
+                //If they didn't search anything, continue displaying the "blank" version of the page
+                else {
+                    $this->loadViews("viewClients", $this->global, $data, NULL);
+                }
+            }//End of address
+
+
+            else if (isset($_POST['search-button-personal'])) {
+                //VALIDATE
+                 //If the user has typed into the phone field check that they have typed a full phone number
+                 if(($this->input->post('phone-s1') != "") || ($this->input->post('phone-s2') != "") || ($this->input->post('phone-s3') != "")) {
+                    //Set Phone Rules
+                    $this->form_validation->set_rules('phone-s1', 'Phone Area Code', 'trim|numeric|required|exact_length[3]');
+                    $this->form_validation->set_rules('phone-s2', 'Phone Prefix', 'trim|numeric|required|exact_length[3]');
+                    $this->form_validation->set_rules('phone-s3', 'Phone Suffix', 'trim|numeric|required|exact_length[4]');
+                }
+    
+                //If the validation has passed, get the values
+                $firstName = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('fname-s')))));
+                $lastName = trim(ucwords(strtolower($this->security->xss_clean($this->input->post('lname-s')))));
+                $locationID = $this->input->post('location-s');
+                $phone1 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s1'))));
+                $phone2 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s2'))));
+                $phone3 = trim(ucwords($this->security->xss_clean($this->input->post('phone-s3'))));
+
+                //echo "Why you no work" . $locationID;
+
+                //Concatenate Phone Number together
+                $phone = $phone1 . $phone2 . $phone3;
+
+                //Check that the user has ACTUALLY searched something
+                if ((!empty($firstName)) || (!empty($lastName)) || (!empty($locationID)) || (!empty($phone))) {
+                    //Create the query!
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Household.location_id, Household.address, Client.client_birthdate, Client.home_phone FROM lfb_clients_next as Client JOIN lfb_household as Household ON Client.household_id = Household.household_id WHERE Client.first_name LIKE \"%$firstName%\" AND Client.last_name LIKE \"%$lastName%\" AND Household.location_id LIKE \"%$locationID%\" AND Client.home_phone LIKE \"%$phone%\"";
+
+                    //Pass the query to the client_model
+                    $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
+
+                    $this->searchedClients($searchQuery);
+                }  
+                //If they didn't search anything, continue displaying the "blank" version of the page
+                else {
+                    $this->loadViews("viewClients", $this->global, $data, NULL);
+                } 
+            }//End of Personal
+
+
             else {
+                //If no button has been pressed, show the "blank" view
                 $this->loadViews("viewClients", $this->global, $data, NULL);
-            }
+            }//End of else
         }//End of check if user is logged in
     }//End of searchClients Function
 
