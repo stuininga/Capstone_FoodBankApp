@@ -19,7 +19,7 @@
                         </div>
                     </div><!--End Outer Row-->
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-3">                                
                                     <div class="form-group">
@@ -43,7 +43,7 @@
                                         </select> 
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="fam-status"><span class="need">*</span> Family Status</label>
                                         <select class="form-control required" id="fam-status" name="fam-status">
@@ -52,6 +52,14 @@
                                                     <option value="<?php echo $fstatus->fstatus_id ?>" <?php if($fstatus->fstatus_id == set_value('fam-status')) {echo "selected=selected";} ?>><?php echo $fstatus->fstatus_type ?></option>
                                             <?php endforeach; ?>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group checkboxes">
+                                        <label for="connected">Connected?</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="connected" type="checkbox" id="connected" value="1">
+                                        </div>
                                     </div>
                                 </div>
                             </div><!--End Row-->
@@ -70,6 +78,20 @@
                                 <div class="col-md-3">
                                     <label for="id-number">ID Number</label>
                                     <input type="text" class="form-control" value="<?php echo set_value('id-number'); ?>" id="id-number" name="id-number" max-length="30">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="xref-1">Xref 1</label>
+                                    <input type="text" class="form-control" value="<?php echo set_value('xref-1'); ?>" id="xref-1" name="xref-1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="xref-2">Xref 2</label>
+                                    <input type="text" class="form-control" value="<?php echo set_value('xref-2'); ?>" id="xref-2" name="xref-2">
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="birth-date">Birth date</label>
+                                    <input type="text" id="birth-date" name="birth-date" />
                                 </div>
                             </div><!--End Row-->
                             <div class="row">
@@ -229,39 +251,7 @@
                                 </div>
                             </div><!--End Row-->
                         </div>
-                        <div class="col-md-4">
-                            <!--Display all the errors for THIS page-->
-                            <?php
-                                $this->load->helper('form');
-                                $error = $this->session->flashdata('error-pg1');
-                            ?>
-                            <?php if($error): ?>
-                                <div class="alert alert-danger alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('error-pg1'); ?>                    
-                                </div>
-                            <?php endif; ?>
-
-                            <?php  
-                                $success = $this->session->flashdata('success-pg1');
-                            ?>
-                            <?php if($success): ?>
-                                <div class="alert alert-success alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('success-pg1'); ?>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-                                </div>
-                            </div>
-                        </div>
                     </div><!--End Outer Row-->
-                    <div class="form-buttons">
-                        <input type="submit" name="personal-submit" class="goto-step1 btn btn-primary client-primary" value="Next">
-                    </div>
                 </div><!--End Personal Information Tab-->
 
                 <!--Income/Residence Tab-->
@@ -277,7 +267,15 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="address"><span class="need">*</span> Address</label>
-                                    <input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" maxlength="150">
+                                    <select id="address-select" class="form-control required" name="address">
+                                        <?php foreach ($addressRecord as $address): ?>
+                                                <?php echo $address->household_id; ?>
+                                                <option value="<?php echo $address->household_id ?>"><?php echo $address->address ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+
+                                    <!-- <input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" class="address" maxlength="150"> -->
                                 </div>
                                 <div class="col-md-3">
                                     <label for="city"><span class="need">*</span> City</label>
@@ -454,10 +452,6 @@
                             </div>
                         </div>
                     </div><!--End Outer Row-->
-                    
-                    <div class="box-footer form-buttons">
-                        <a href="#" name="inres-submit" class="goto-step2 btn btn-primary client-primary"><i class="fas fa-angle-right"></i> Next</a>
-                    </div>
                 </div><!--End Income/Residence Tab-->
 
                 <!--Extra Details Tab-->
@@ -471,27 +465,18 @@
 
                         </div>
                     </div>
-                    <div class="form-buttons">
-                        <a href="#" class="goto-step3 btn btn-primary client-primary"><i class="fas fa-angle-right"></i> Next</a>
-                    </div>
                 </div>
 
                 <!--Adults/Children Tab-->
                 <h3>Adults/Children</h3>
                 <div>
                     <p>Placeholder!</p>
-                    <div class="form-buttons">
-                        <a href="#" class="goto-step4 btn btn-primary client-primary"><i class="fas fa-angle-right"></i> Next</a>
-                    </div>
                 </div><!--End Adults/Children Tab-->
 
                 <!--Pounds Issued Tab-->
                 <h3>Pounds Issued</h3>
                 <div>
                     <p>Placeholder!</p>
-                    <div class="form-buttons">
-                        <a href="#" class="goto-step5 btn btn-primary client-primary"><i class="fas fa-angle-right"></i> Next</a>
-                    </div>
                 </div><!--End Pounds Issued Tab-->
 
                 <!--Referrals Tab-->
@@ -502,5 +487,10 @@
             </div><!--End Wizard-->
         </form>
     </section>
+
+
+
+
+
 
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>

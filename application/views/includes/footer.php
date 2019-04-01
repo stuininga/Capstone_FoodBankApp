@@ -8,9 +8,9 @@
     <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/js/custom.js"></script>
-
-    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/typeahead.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/custom.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/typeahead.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/jquery-editable-select.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var windowURL = window.location.href;
@@ -22,58 +22,14 @@
             y.addClass('active');
             y.parent().addClass('active');
 
-        //Multipage form (jQuery Steps)
-    //     $("#wizard").steps({
-    //         headerTag: "h3",
-    //         bodyTag: "div",
-    //         transitionEffect: "slideLeft",
-    //         autoFocus: true,
-    //         enableFinishButton: false,
-    //         enablePagination: false,
-    //         enableAllSteps: true,
-    //         titleTemplate: "#title#",
-    //         cssClass: "tabcontrol"
-    //   });
-       $("#wizard").steps({
-            headerTag: "h3",
-            bodyTag: "div",
-            transitionEffect: "slideLeft",
-            autoFocus: true,
-            enableFinishButton: true,
-            enablePagination: true,
-            enableAllSteps: true
-        });
+        
 
-        /** Custom Pagination buttons to allow for validation */
-        $(".goto-step0").click(function(e){
-            $("#wizard-t-0").click();
-        });
-
-        $(".goto-step1").click(function(e){
-            $("#wizard-t-1").click();
-        });
-
-        $(".goto-step2").click(function(e){
-            $("#wizard-t-2").click();
-        });
-
-        $(".goto-step3").click(function(e){
-            $("#wizard-t-3").click();
-        });
-
-        $(".goto-step4").click(function(e){
-            $("#wizard-t-4").click();
-        });
-
-        $(".goto-step5").click(function(e){
-            $("#wizard-t-5").click();
-        });
-
+        //Typeahead
         $(document).ready(function () {
             $('.address').typeahead({
                 source: function (query, result) {
                     $.ajax({
-                        url: "includes/server.php",
+                        url: "<?php echo base_url(); ?>application/views/includes/server.php",
                         data: 'query=' + query,            
                         dataType: "json",
                         type: "POST",
@@ -86,8 +42,52 @@
                 }
             });
         });
-      
+</script>
+<?php foreach($addressRecord as $address): ?>
+    <script>
+        //Store access to address-select
+        var select = $('#address-select');
 
+        // Editable Select
+        select.editableSelect();
+
+        //Begin collecting values for submission
+        var clientValues = [];
+        var householdValues = [];
+         
+        select.change(function(e) {
+            householdValues['city'] = $('#city').val();
+
+            console.log(clientValues);
+            console.log(householdValues);
+        });
+
+        select.on('select.editable-select', function(e) {
+            //Get the values from the select
+            var household_id = $('.es-list li.selected').val();
+            var location_id = "<?php echo $address->location_id; ?>"
+            var address = $('.es-list li.selected').text();
+
+            clientValues['household_id'] = household_id;
+
+            // console.log("ID: " + household_id);
+            // console.log("Address: " + address);
+            console.log("YUP");
+
+            console.log(clientValues);
+            console.log(householdValues);
+
+        });
+
+        $( function() {
+          $( "#birth-date" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1920:c'
+          });
+        } );
+      
     </script>
+<?php endforeach; ?>
   </body>
 </html>

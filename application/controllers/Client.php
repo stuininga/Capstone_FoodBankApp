@@ -51,10 +51,11 @@ class Client extends BaseController
             $data['incomeRecord'] = $this->client_model->getClientIncome();
             $data['statusRecord'] = $this->client_model->getClientResStatus();
             $data['fstatusRecord'] = $this->client_model->getClientFamStatus();
+            $data['addressRecord'] = $this->client_model->getAddresses();
  
             $this->global['pageTitle'] = 'Leduc Food Bank | Add New User';
 
-            $this->loadViews("addClient", $this->global, $data, NULL);
+            $this->loadViews("addClient", $this->global, $data, $data);
         }
     }
 
@@ -175,7 +176,7 @@ class Client extends BaseController
                 //Check that the user has ACTUALLY searched something
                 if (!empty($ccode)) {
                     //Create the query!
-                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = \"$ccode\"";
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.client_birthdate, Client.home_phone FROM lfb_clients as Client JOIN lfb_household as Household ON Client.household_id = Household.household_id WHERE Client.client_code = \"$ccode\"";
 
                     //Pass the query to the client_model
                     $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
@@ -195,7 +196,7 @@ class Client extends BaseController
                 //Check that the user has ACTUALLY searched something
                 if (!empty($address)) {
                     //Create the query!
-                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.location_id, Client.client_birthdate, Client.home_phone, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.address LIKE \"%$address%\"";
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Household.address, Client.client_birthdate, Client.home_phone FROM lfb_clients as Client JOIN lfb_household as Household ON Client.household_id = Household.household_id WHERE Household.address LIKE \"%$address%\"";
 
                     //Pass the query to the client_model
                     $data['clientRecord'] = $this->client_model->searchClients($searchQuery);
@@ -211,8 +212,8 @@ class Client extends BaseController
 
             else if (isset($_POST['search-button-personal'])) {
                 //VALIDATE
-                 //If the user has typed into the phone field check that they have typed a full phone number
-                 if(($this->input->post('phone-s1') != "") || ($this->input->post('phone-s2') != "") || ($this->input->post('phone-s3') != "")) {
+                //If the user has typed into the phone field check that they have typed a full phone number
+                if(($this->input->post('phone-s1') != "") || ($this->input->post('phone-s2') != "") || ($this->input->post('phone-s3') != "")) {
                     //Set Phone Rules
                     $this->form_validation->set_rules('phone-s1', 'Phone Area Code', 'trim|numeric|required|exact_length[3]');
                     $this->form_validation->set_rules('phone-s2', 'Phone Prefix', 'trim|numeric|required|exact_length[3]');
@@ -235,7 +236,7 @@ class Client extends BaseController
                 //Check that the user has ACTUALLY searched something
                 if ((!empty($firstName)) || (!empty($lastName)) || (!empty($locationID)) || (!empty($phone))) {
                     //Create the query!
-                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Household.location_id, Household.address, Client.client_birthdate, Client.home_phone FROM lfb_clients_next as Client JOIN lfb_household as Household ON Client.household_id = Household.household_id WHERE Client.first_name LIKE \"%$firstName%\" AND Client.last_name LIKE \"%$lastName%\" AND Household.location_id LIKE \"%$locationID%\" AND Client.home_phone LIKE \"%$phone%\"";
+                    $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Household.address, Client.client_birthdate, Client.home_phone FROM lfb_clients as Client JOIN lfb_household as Household ON Client.household_id = Household.household_id WHERE Client.first_name LIKE \"%$firstName%\" AND Client.last_name LIKE \"%$lastName%\" AND Household.location_id LIKE \"%$locationID%\" AND Client.home_phone LIKE \"%$phone%\"";
 
                     //Pass the query to the client_model
                     $data['clientRecord'] = $this->client_model->searchClients($searchQuery);

@@ -1,10 +1,10 @@
 <?php		
 	$keyword = strval($_POST['address']);
 	$search_param = "{$keyword}%";
-	$conn = new mysqli("localhost", "stuininga1","BV34Bluebell","stuininga1_dmit2025");
+	$conn = new mysqli("localhost", "leduc-foodbank-a","x2imqnDnRvaObnD","leduc_foodbank_a_admin");
 	
 
-	$sql = $conn->prepare("SELECT address FROM lfb_clients WHERE address LIKE ?");
+	$sql = $conn->prepare("SELECT address FROM lfb_household WHERE address LIKE ?");
 	$sql->bind_param("s",$search_param);			
 	$sql->execute();
 	$result = $sql->get_result();

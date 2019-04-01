@@ -19,13 +19,13 @@ class Client_model extends CI_Model
     {
         if(empty($id)) {
             $this->db->select('Client.client_code, Client.household_id, Client.first_name, Client.last_name, Client.client_birthdate, Client.home_phone, Client.cell_phone, Client.gender, Client.special_diet, Client.famv, Client.famv_date, Client.famv_comments, Client.family_status, Client.cid_type, Client.cid_number, Client.active, Client.residential_status, Client.primary_income, Client.secondary_income, Client.other_income, Client.total_monthly_income, Client.rent_mortgage, Client.utilities, Client.public_comments, Client.special_fields, Household.location_id, Household.address, Household.city, Household.province, Household.postal_code, Household.legal_land_desc, Household.location_type, Household.address_proof, Household.landlord');
-            $this->db->from('lfb_clients_next as Client');
+            $this->db->from('lfb_clients as Client');
             $this->db->join('lfb_household as Household','Client.household_id = Household.household_id');
             $query = $this->db->get();
         }
         else {
             $this->db->select('Client.client_code, Client.household_id, Client.first_name, Client.last_name, Client.client_birthdate, Client.home_phone, Client.cell_phone, Client.gender, Client.special_diet, Client.famv, Client.famv_date, Client.famv_comments, Client.family_status, Client.cid_type, Client.cid_number, Client.active, Client.residential_status, Client.primary_income, Client.secondary_income, Client.other_income, Client.total_monthly_income, Client.rent_mortgage, Client.utilities, Client.public_comments, Client.special_fields, Household.location_id, Household.address, Household.city, Household.province, Household.postal_code, Household.legal_land_desc, Household.location_type, Household.address_proof, Household.landlord');
-            $this->db->from('lfb_clients_next as Client');
+            $this->db->from('lfb_clients as Client');
             $this->db->join('lfb_household as Household','Client.household_id = Household.household_id');
             $this->db->where('Client.client_code', $id);
             $query = $this->db->get();
@@ -161,6 +161,19 @@ class Client_model extends CI_Model
     {
         $searchQuery = "SELECT Client.first_name, Client.last_name, Client.client_code, Client.address, Client.city, Client.postal_code, Client.province, Client.location_id, Client.legal_land_desc, Client.location_type, Client.address_proof, Client.landlord, Client.client_birthdate, Client.home_phone, Client.gender, Client.special_diet, Client.famv, Client.famv_date, Location.location_name FROM lfb_clients as Client JOIN lfb_clients_location as Location ON Client.location_id = Location.location_id WHERE Client.client_code = $clientID";
         $query = $this->db->query($searchQuery);
+        return $query->result();
+    }
+
+    /**
+     * This function is used to get all the addresses from the database for the editable select
+     * @return number $result : This is the result of the query
+     */
+    function getAddresses()
+    {
+        $this->db->select('household_id, location_id, address, city, province, postal_code, legal_land_desc, location_type, address_proof, landlord');
+        $this->db->from('lfb_household');
+        $query = $this->db->get();
+        
         return $query->result();
     }
 
