@@ -8,6 +8,7 @@
     <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/jquery.maskedinput.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/custom.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/typeahead.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/jquery-editable-select.min.js" type="text/javascript"></script>
@@ -43,7 +44,7 @@
             });
         });
 </script>
-<?php foreach($addressRecord as $address): ?>
+
     <script>
         //Store access to address-select
         var select = $('#address-select');
@@ -55,6 +56,7 @@
         var clientValues = [];
         var householdValues = [];
          
+        //If the user types into the address select, collect values for a new household 
         select.change(function(e) {
             householdValues['city'] = $('#city').val();
 
@@ -62,32 +64,71 @@
             console.log(householdValues);
         });
 
+        //If the user selects from the address select, populate the form
         select.on('select.editable-select', function(e) {
             //Get the values from the select
             var household_id = $('.es-list li.selected').val();
-            var location_id = "<?php echo $address->location_id; ?>"
+            var location_id = "";
             var address = $('.es-list li.selected').text();
 
             clientValues['household_id'] = household_id;
 
             // console.log("ID: " + household_id);
             // console.log("Address: " + address);
-            console.log("YUP");
 
             console.log(clientValues);
             console.log(householdValues);
 
         });
 
-        $( function() {
-          $( "#birth-date" ).datepicker({
+
+        // Date picker to get client's birth date and age
+        $("#birth-date").datepicker({
             changeMonth: true,
             changeYear: true,
-            yearRange: '1920:c'
-          });
-        } );
+            yearRange: 'c-120:c',
+            onSelect: function(e) {
+                //Get the date from the datepicker
+                var date = $("#birth-date").val();
+
+                //Add the birthdate to the client array
+                clientValues['client_birthdate'] = date;
+                
+                //Update the age field
+                var age = calculateAge(date);
+                $('#age').val(age);
+            }
+        });
+
+        // Date picker to get famv date
+        $("#famv-date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: 'c-120:c',
+            onSelect: function(e) {
+                //Get the date from the datepicker
+                var date = $("#famv-date").val();
+
+                //Add the birthdate to the client array
+                clientValues['famv_date'] = date;
+            }
+        });
+
+
+        /**
+        * This function is used to calculate a client's age
+        * @param string birthDate : The client's birthdate
+        * @return number : The client's age
+        */
+        function calculateAge(birthDate) {
+            var today = new Date();
+            birthDate = new Date(birthDate);
+            var diff =(today.getTime() - birthDate.getTime()) / 1000;
+            diff /= (60 * 60 * 24);
+            return Math.abs(Math.round(diff/365.25));
+        }
+
       
     </script>
-<?php endforeach; ?>
   </body>
 </html>

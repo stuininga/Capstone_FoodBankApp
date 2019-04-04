@@ -453,3 +453,7 @@ section.content.client-form {
         margin-bottom: 20px;
     }
 }
+
+
+
+#ui-datepicker-div { display:none }

@@ -89,43 +89,10 @@
                                 </div>
                             </div><!--End Row-->
                             <div class="row">
-                                <div class="col-md-4">
-                                    <label for="birth-date">Birth date</label>
-                                    <input type="text" id="birth-date" name="birth-date" />
-                                </div>
-                            </div><!--End Row-->
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="birth-month"><span class="need">*</span> Birth Date</label>
-                                        <select class="form-control required" id="birth-month" name="birth-month">
-                                            <option value="">Month</option>
-                                            <?php for($month=1; $month<=12; $month++): ?>
-                                                <option value="<?php echo $month; ?>" <?php if($month == set_value('birth-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="birth-day" class="no-label"></label>
-                                        <select class="form-control required" id="birth-day" name="birth-day">
-                                            <option value="">Day</option>
-                                            <?php for($date=1; $date<=31; $date++): ?>
-                                                <option value="<?php echo $date ?>" <?php if($date == set_value('birth-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="birth-year" class="no-label"></label>
-                                        <select class="form-control required" id="birth-year" name="birth-year">
-                                            <option value="">Year</option>
-                                            <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
-                                                <option value="<?php echo $year; ?>" <?php if($year == set_value('birth-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
-                                            <?php endfor; ?>
-                                        </select>
+                                        <label for="birth-date"><span class="need">*</span> Birth date</label>
+                                        <input type="text" class="form-control required" id="birth-date" name="birth-date"/>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -134,42 +101,16 @@
                                         <input type="text" class="form-control" value="<?php echo set_value('age'); ?>" id="age" name="age" disabled>
                                     </div>
                                 </div>
-                            </div><!--End Row-->
-                            <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="home-phone1"><span class="need">*</span> Home Phone</label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('home-phone1'); ?>" id="home-phone1" name="home-phone1" placeholder="###">
+                                        <label for="home-phone"><span class="need">*</span> Home Phone</label>
+                                        <input type="text" class="form-control required" value="<?php echo set_value('home-phone'); ?>" id="home-phone" name="home-phone">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="home-phone2" class="no-label"></label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('home-phone2'); ?>" id="home-phone2" name="home-phone2" placeholder="###">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="home-phone2" class="no-label"></label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('home-phone3'); ?>" id="home-phone3" name="home-phone3" placeholder="####">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="cell-phone">Cell Phone</label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('cell-phone1'); ?>" id="cell-phone1" name="cell-phone1" placeholder="###">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="home-phone2" class="no-label"></label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('cell-phone2'); ?>" id="cell-phone2" name="cell-phone2" placeholder="###">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="home-phone2" class="no-label"></label>
-                                        <input type="text" class="form-control required" value="<?php echo set_value('cell-phone3'); ?>" id="cell-phone3" name="cell-phone3" placeholder="####">
+                                        <input type="text" class="form-control" value="<?php echo set_value('cell-phone'); ?>" id="cell-phone" name="cell-phone">
                                     </div>
                                 </div>
                             </div><!--End Row-->
@@ -212,42 +153,29 @@
                                         <select class="form-control" id="famv" name="famv">
                                             <option value="">Select...</option>
                                             <option value="suspected" <?php if("suspected" == set_value('famv')) {echo "selected=selected";} ?>>Suspected</option>
-                                            <option value="2" <?php if("2" == set_value('famv')) {echo "selected=selected";} ?>>2</option>
+                                            <option value="confirmed" <?php if("confirmed" == set_value('famv')) {echo "selected=selected";} ?>>Confirmed</option>
                                         </select> 
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <label for="famv-month">FAMV Date</label>
-                                    <select class="form-control" id="famv-month" name="famv-month">
-                                        <option value="">Month</option>
-                                        <?php for($month=1; $month<=12; $month++): ?>
-                                            <option value="<?php echo $month; ?>" <?php if($month == set_value('famv-month')) {echo "selected=selected";} ?>><?php echo date('F', mktime(0, 0, 0, $month, 1)); ?></option>
-                                        <?php endfor; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="famv-day" class="no-label"></label>
-                                    <select class="form-control" id="famv-day" name="famv-day">
-                                        <option value="">Day</option>
-                                        <?php for($date=1; $date<=31; $date++): ?>
-                                            <option value="<?php echo $date ?>" <?php if($date == set_value('famv-day')) {echo "selected=selected";} ?>><?php echo $date; ?></option>
-                                        <?php endfor; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="famv-year" class="no-label"></label>
-                                    <select class="form-control" id="famv-year" name="famv-year">
-                                        <option value="">Year</option>
-                                        <?php for($year=date("Y"); $year>=(date("Y")-120); $year--): ?>
-                                            <option value="<?php echo $year; ?>" <?php if($year == set_value('famv-year')) {echo "selected=selected";} ?>><?php echo $year; ?></option>
-                                        <?php endfor; ?>
-                                    </select>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="famv-date">FAMV date</label>
+                                        <input type="text" class="form-control" id="famv-date" name="famv-date" />
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="famv-comments">FAMV Comments</label>
                                         <input type="text" class="form-control" value="<?php echo set_value('famv-comments'); ?>" id="famv-comments" name="famv-comments" max-length="100">
                                     </div> 
+                                </div>
+                            </div><!--End Row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="public-comments">Public Comments</label>
+                                        <input type="text" class="form-control" value="<?php echo set_value('public-comments'); ?>" id="public-comments" name="public-comments">
+                                    </div>
                                 </div>
                             </div><!--End Row-->
                         </div>
@@ -263,7 +191,7 @@
                         </div>
                     </div><!--End Outer Row-->
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="address"><span class="need">*</span> Address</label>
@@ -279,7 +207,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="city"><span class="need">*</span> City</label>
-                                    <input type="text" class="form-control required" value="<?php echo set_value('city'); ?>" id="city" name="city" max-length="70">
+                                    <input type="text" class="form-control required" value="<?php echo set_value('city'); ?>" id="city" name="city" max-length="30">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="province"><span class="need">*</span> Province</label>
@@ -383,8 +311,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="secondary-income-type"><span class="need">*</span> Secondary Income Source</label>
-                                        <select class="form-control required" id="secondary-income-type" name="secondary-income-type">
+                                        <label for="secondary-income-type"> Secondary Income Source</label>
+                                        <select class="form-control" id="secondary-income-type" name="secondary-income-type">
                                             <option value="">Select Type...</option>
                                             <?php foreach ($incomeRecord as $income): ?>
                                                     <option value="<?php echo $income->income_id ?>" <?php if($income->income_type == set_value('secondary-income-type')) {echo "selected=selected";} ?>><?php echo $income->income_type ?></option>
@@ -413,43 +341,6 @@
                                     </div>
                                 </div>
                             </div><!--End Row-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="public-comments">Public Comments</label>
-                                        <input type="text" class="form-control" value="<?php echo set_value('public-comments'); ?>" id="public-comments" name="public-comments">
-                                    </div>
-                                </div>
-                            </div><!--End Row-->
-                        </div>
-                        <div class="col-md-4">
-                            <!--Display all the errors for THIS page-->
-                            <?php
-                                $this->load->helper('form');
-                                $error = $this->session->flashdata('error-pg2');
-                            ?>
-                            <?php if($error): ?>
-                                <div class="alert alert-danger alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('error-pg2'); ?>                    
-                                </div>
-                            <?php endif; ?>
-
-                            <?php  
-                                $success = $this->session->flashdata('success-pg2');
-                            ?>
-                            <?php if($success): ?>
-                                <div class="alert alert-success alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('success-pg2'); ?>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-                                </div>
-                            </div>
                         </div>
                     </div><!--End Outer Row-->
                 </div><!--End Income/Residence Tab-->
@@ -458,11 +349,8 @@
                 <h3>Extra Details</h3>
                 <div>
                     <div class="row">
-                        <div class="col-md-8">
-
-                        </div>
-                        <div class="col-md-4">
-
+                        <div class="col-md-12">
+                            <p>Placeholder!</p>
                         </div>
                     </div>
                 </div>
